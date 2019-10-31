@@ -47,7 +47,8 @@ def profile(request):
 
 
 def pizzalist(request):
-    context = {"pizzalist_page": "active"}
+    pizzas = Pizza.objects.all().order_by('-name')
+    context = {'pizzalist_page': 'active', 'pizzas': pizzas}
     return render(request, 'pizzalist.html', context)
 
 
