@@ -43,13 +43,11 @@
             </div>
             <div class="col">
                 <div class="input-group mb-3 corner">
-                    <form action='pizzaSearch' method='POST'>
-                        {% csrf_token %}
+                    <form action='pizzaSearch' method='POST'>{% csrf_token %}
                         <div class="input-group-append">                        
                             <input name="search_keyword" type="text" class="form-control" placeholder="Search for pizza">
                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
-                        {% csrf_token %}
                     </form>
                 </div>
                 <div class="checkbox-filter">
