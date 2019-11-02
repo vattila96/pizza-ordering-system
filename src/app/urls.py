@@ -12,5 +12,5 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('pizzalist/', views.pizzalist, name='pizzalist'),
     path('myorders/', views.myorders, name='myorders'),
-    path('pizzalist/pizzaSearch', views.pizzasearch, name='pizzasearch')
+    path('pizzalist/pizzaSearch', views.pizzasearch, name='pizzasearch'),
 ]

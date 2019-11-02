@@ -47,6 +47,10 @@ def profile(request):
 
 
 def pizzalist(request):
+    if request.method == 'POST':
+        keyword = request.POST.get("custompizza_name", None)
+        Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True).save()
+
     pizzas = Pizza.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas}
     return render(request, 'pizzalist.html', context)
@@ -59,7 +63,6 @@ def pizzasearch(request):
     pizzas = (name_contains | description_contains).order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas}
     return render(request, 'pizzalist.html', context)
-
 
 def myorders(request):
     context = {"myorders_page": "active"}
