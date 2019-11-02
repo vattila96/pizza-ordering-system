@@ -11,6 +11,7 @@ services:
       - "8000:8000"
     links:
       - postgres
+    entrypoint: container/entry_point.sh
   postgres:
     image: postgres:latest
     ports:
