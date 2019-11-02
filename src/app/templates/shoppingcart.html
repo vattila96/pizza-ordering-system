@@ -1,0 +1,51 @@
+<!-- SHOPPING CART MODAL -->
+<div class="modal fade" id="shopping-cart-modal" tabindex="-1" role="dialog"
+     aria-labelledby="Shopping Cart" aria-hidden="true">
+     <div class="modal-dialog shopping-cart-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shopping-cart">Shopping Cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="center-block">
+                    <!-- Popup's test content. You can delete it -->
+                    {% for pizza in pizzas %}
+                    <div class="card mb-3 bg-dark text-light pizza-card center">
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
+                                <img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body pizza-body">
+                                    <h5 class="card-title">{{ pizza.name }}</h5>
+                                    <p class="card-text">{{ pizza.description }}</p>
+                                    <p class="card-text payment-row">
+                                        <span>{{ pizza.price }} HUF</span>
+                                        <span class="float-right mr-4 mb-2">
+                                            <button class="btn btn-secondary"
+                                                    style="background-color: green">+</button></span>
+                                        <span class="float-right">
+                                            <button data-toggle="modal" data-target="#customize-pizza-modal"
+                                                    type="button" class="btn btn-secondary"
+                                                    style="background-color: green">-</button></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Popup's test content end. You can delete it -->
+                    <div class="card shopping-cart">
+                        <div class="card-body">
+                            <p class="card-text">0 huf</p>
+                            <a href="#" class="btn btn-secondary center">Pay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
