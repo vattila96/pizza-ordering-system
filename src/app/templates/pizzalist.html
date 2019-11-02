@@ -87,12 +87,27 @@
                                     <p class="card-text">{{ pizza.description }}</p>
                                     <p class="card-text payment-row">
                                         <span>{{ pizza.price }} HUF</span>
-                                        <span class="float-right mr-4 mb-2"><button
-                                            class="btn btn-secondary">Buy</button></span>
+                                        {% if user.is_authenticated %}
+                                        <span class="float-right mr-4 mb-2">
+                                            <button class="btn btn-secondary"
+                                                    style="background-color: green">Buy</button></span>
                                         <span class="float-right">
                                             <button data-toggle="modal" data-target="#customize-pizza-modal"
-                                                    type="button" class="btn btn-secondary">Edit</button>
-                                        </span>
+                                                    type="button" class="btn btn-secondary"
+                                                    style="background-color: green">Edit</button></span>
+                                        {% else %}
+                                        <span class="float-right mr-4 mb-2">
+                                                <button title="You need to be logged in to add items to the shopping cart"
+                                                        class="btn btn-secondary"
+                                                        style="background-color: gray"
+                                                        disabled>Buy</button></span>
+                                            <span class="float-right">
+                                                <button data-toggle="modal" data-target="#customize-pizza-modal"
+                                                        title="You need to be logged in to edit pizzas"
+                                                        type="button" class="btn btn-secondary"
+                                                        style="background-color: gray"
+                                                        disabled>Edit</button></span>
+                                        {% endif %}
                                     </p>
                                 </div>
                             </div>
