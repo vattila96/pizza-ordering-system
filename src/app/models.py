@@ -8,6 +8,7 @@ class Post(models.Model):
 
 class Pizza(models.Model):
     name = models.CharField(max_length=100)
+    size = models.PositiveIntegerField(default=30)
     description = models.TextField()
     price = models.PositiveIntegerField(default=0)
     is_custom_pizza = models.BooleanField(default=False)
