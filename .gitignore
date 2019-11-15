@@ -101,3 +101,4 @@ Temporary Items
 .apdisk
 .idea
 src/radixProject/account_data
+src/app/migration/000*
