@@ -1,6 +1,14 @@
 # Pizza ordering system
 Forked from: https://github.com/thejungwon/docker-webapp-django
 
+## Migration errors
+If you have some migration errors run the following code snippets:
+```
+./kill_app.sh
+docker volume list
+docker volume rm container_pgdata
+```
+
 ## Prerequists
 - Clone this directory
 - Install docker for any desktop platforms (Linux, Windows, MacOS)
