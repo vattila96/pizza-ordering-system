@@ -13,12 +13,7 @@ COPY .env webpack.config.js tsconfig.json environment.* postcss.config.js ./
 COPY src src/
 COPY package.json yarn.lock ./
 
-RUN ls -la
-
 RUN yarn install
 RUN yarn build
-
-RUN ls -la
-RUN ls -la ./dist
 
 CMD ["node", "./dist/server.js"]
