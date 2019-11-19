@@ -1,0 +1,3 @@
+@mixin round-borders($size: 5px) {
+  border-radius: $size;
+}
