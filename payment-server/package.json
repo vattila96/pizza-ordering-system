@@ -8,8 +8,8 @@
   "private": true,
   "scripts": {
     "start": "node ./dist/server.js",
-    "dev": "rimraf dist && cross-env ENVIRONMENT=development webpack",
-    "build": "rimraf dist && cross-env ENVIRONMENT=production webpack",
+    "dev": "rimraf dist && cross-env ENVIRONMENT=development webpack --mode=development",
+    "build": "rimraf dist && cross-env ENVIRONMENT=production webpack --mode=production",
     "ts-check": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "lint-fix": "eslint \"**/*.{js,ts,tsx}\" --quiet --fix",

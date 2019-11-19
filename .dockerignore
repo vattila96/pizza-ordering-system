@@ -2,3 +2,5 @@
 !entry_point.sh
 !requirements.txt
 !radixconfig.yaml
+payment-server/node_modules
+payment-server/dist
