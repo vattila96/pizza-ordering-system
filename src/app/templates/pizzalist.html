@@ -131,7 +131,11 @@
                             <div class="card mb-3 bg-dark text-light pizza-card center">
                                 <div class="row no-gutters">
                                     <div class="col-md-2">
-                                        <img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+                                        {% if pizza.image %}
+                                            <img src="{{ pizza.image.url }}" class="card-img" alt="...">
+                                        {%  else %}
+                                            <img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+                                        {% endif %}
                                     </div>
                                     <div class="col-md-10">
                                         <div class="card-body pizza-body">
