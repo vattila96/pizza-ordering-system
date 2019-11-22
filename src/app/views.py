@@ -24,21 +24,18 @@ def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(FoodProduct, id=product_id)
     cart.add(product=product, quantity=1)
-    return redirect('cart_detail')
+    return redirect('shoppingcart')
 
 def cart_remove(request, product_id):
     cart = Cart(request)
-    product = get_object_or_404(Product, id=product_id)
+    product = get_object_or_404(FoodProduct, id=product_id)
     cart.remove(product)
-    return redirect('cart_detail')
+    return redirect('shoppingcart')
 
 def cart_detail(request):
     cart = Cart(request)
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
-    print(cart)
-    for item in cart:
-      print(item)
     return render(request, 'shoppingcart.html', {'cart': cart})
 
 def product_list(request, category_slug=None):
