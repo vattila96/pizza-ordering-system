@@ -1,5 +1,22 @@
-
 {% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/album.css' %}" >
+	
+	<title>Pizza - My shopping cart</title>
+	
+</head>
+<body>
+{% include 'layouts/navbar.html' %}
 {% block content %}
     <div class="container">
         <div class="row" style="margin-top: 6%">
@@ -8,8 +25,8 @@
                 {% with totail_items=cart|length %}
                     {% if cart|length > 0 %}
                         My Shopping Order:
-                        <a href="{% url "cart:cart_detail" %}" style="color: #ffffff">
-                            {{ totail_items }} item {{ totail_items|pluralize }}, {{ cart.get_total_price }}
+                        <a href="{% url "cart_detail" %}" style="color: #ffffff">
+                            {{ totail_items }} item {{ totail_items|pluralize }}, {{ cart.get_total_price }} HUF
                         </a>
                         {% else %}
                         Your cart is empty.
@@ -43,17 +60,23 @@
                             <td>
                                 <a href="{% url "cart_remove" product.public_product_id %}">Remove</a>
                             </td>
-                            <td>{{ item.price }}</td>
-                            <td>{{ item.total_price }}</td>
+                            <td>{{ item.price }} HUF</td>
+                            <td>{{ item.total_price }} HUF</td>
                         </tr>
                     {% endwith %}
                 {% endfor %}
                 <tr style="background-color: #5AC8FA">
                     <td><b>Total</b></td>
-                    <td colspan="num"><b>{{ cart.get_total_price }}</b></td>
+                    <td colspan="4"></td>
+                    <td colspan="num"><b>{{ cart.get_total_price }} HUF</b></td>
                 </tr>
                 </tbody>
             </table>
+        <p class="text-right">
+            <a href="{% url "pizzalist" %}" class="btn btn-default">Continue Shopping</a>
+            <a href="https://stripe-payments-demo.appspot.com/" class="btn btn-primary">Checkout</a>
+        </p>
         </div>
     </div>
+   
 {% endblock %}

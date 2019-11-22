@@ -35,11 +35,8 @@
                 <button type="button" class="btn side-btn btn-lg btn-block">Beverages</button>
                 <div class="card shopping-cart">
                     <div class="card-body">
-                        <h5 class="card-title">Total:</h5>
-                        <p class="card-text">0 huf</p>
-                        {% include 'shoppingcart.html' %}
                         <button data-toggle="modal" data-target="#shopping-cart-modal"
-                        type="button" class="btn btn-secondary">Check Cart
+                        type="button" class="btn btn-secondary"><a href="{% url 'shoppingcart' %}">Check Cart</a>
                         </button>
                     </div>
                 </div>
