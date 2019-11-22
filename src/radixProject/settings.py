@@ -152,3 +152,5 @@ file = open(os.path.join(BASE_DIR, 'radixProject/account_data'))
 EMAIL_HOST_USER = base64.b64decode(file.readline()).decode('ascii').rstrip('\n') + "@gmail.com"
 EMAIL_HOST_PASSWORD = base64.b64decode(file.readline()).decode('ascii').rstrip('\n')
 file.close()
+
+CART_SESSION_ID = 'cart'
