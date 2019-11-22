@@ -15,5 +15,3 @@ urlpatterns = [
     path('pizzalist/pizzaSearch', views.pizzasearch, name='pizzasearch'),
     path('pizzalist/pizzaReset', views.pizzareset, name='pizzareset'),
 ]
-
-#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
