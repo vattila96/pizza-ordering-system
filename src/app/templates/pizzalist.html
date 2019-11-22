@@ -52,6 +52,11 @@
                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
                     </form>
+                    <form action='pizzaReset' method='POST'>{% csrf_token %}
+                        <div class="input-group-append">                        
+                            <button name="reset_keyword" class="btn btn-outline-secondary" type="submit" id="button-addon2">Reset</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="checkbox-filter">
                     <div class="allergens allergene-title">Allergens to exclude:</div>

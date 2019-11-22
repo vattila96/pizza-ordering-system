@@ -65,6 +65,12 @@ def pizzasearch(request):
     context = {'pizzalist_page': 'active', 'pizzas': pizzas}
     return render(request, 'pizzalist.html', context)
 
+def pizzareset(request):
+    keyword = request.POST.get("reset_keyword", None)
+    pizzas = Pizza.objects.all().order_by('-name')
+    context = {'pizzalist_page': 'active', 'pizzas': pizzas}
+    return render(request, 'pizzalist.html', context)
+
 def myorders(request):
     myorders = []
 
