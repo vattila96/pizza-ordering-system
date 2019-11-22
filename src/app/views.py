@@ -13,7 +13,7 @@ from django.views.decorators.http import require_POST
 from .cart import Cart
 
 
-PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 26)]
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 30)]
 
 class CartAddProductForm(forms.Form):
     quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
@@ -22,8 +22,15 @@ class CartAddProductForm(forms.Form):
 @require_POST
 def cart_add(request, product_id):
     cart = Cart(request)
+    print(request)
+    print(cart)
     product = get_object_or_404(FoodProduct, id=product_id)
-    cart.add(product=product, quantity=1)
+    form = CartAddProductForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
+    else:
+      cart.add(product=product, quantity=1)
     return redirect('shoppingcart')
 
 def cart_remove(request, product_id):
