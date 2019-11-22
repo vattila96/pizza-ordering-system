@@ -34,11 +34,14 @@
                 <button type="button" class="btn side-btn btn-lg btn-block">Desserts</button>
                 <button type="button" class="btn side-btn btn-lg btn-block">Beverages</button>
                 <div class="card shopping-cart">
+                    <!--
                     <div class="card-body">
                         <button data-toggle="modal" data-target="#shopping-cart-modal"
                         type="button" class="btn btn-secondary"><a href="{% url 'shoppingcart' %}">Check Cart</a>
                         </button>
                     </div>
+                    -->
+                    <a href="{% url "shoppingcart" %}" class="btn btn-secondary">Check Cart</a>
                 </div>
             </div>
             <div class="col">
@@ -133,18 +136,18 @@
                                             <p class="card-text payment-row">
                                                 <span>{{ pizza.price }} HUF</span>
                                                 {% if user.is_authenticated %}
-                                                <span class="float-right mr-4 mb-2">
                                                     <form action="{% url "cart_add" 1 %}" method="post">
                                                         {% csrf_token %}
-                                                        {{ cart_product_form }}
-                                                        <input type="submit" value="add to cart" class="btn btn-secondary" style="background-color: green" value="Add to cart">
+                                                        <span class="float-right mr-4 mb-2">
+                                                            <input type="submit" class="btn btn-secondary" style="background-color: green" value="Add to cart">
+                                                        </span>
+                                                        <span class="float-right mr-4 mb-2">
+                                                            <button data-toggle="modal" data-target="#customize-pizza-modal"
+                                                                type="button" class="btn btn-secondary"
+                                                                style="background-color: green">Edit
+                                                            </button>
+                                                        </span>
                                                     </form>
-                                                </span>
-                                                            
-                                                <span class="float-right">
-                                                    <button data-toggle="modal" data-target="#customize-pizza-modal"
-                                                            type="button" class="btn btn-secondary"
-                                                            style="background-color: green">Edit</button></span>
                                                 {% else %}
                                                 <span class="float-right mr-4 mb-2">
                                                         <button title="You need to be logged in to add items to the shopping cart"
