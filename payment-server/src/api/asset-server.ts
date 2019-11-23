@@ -5,20 +5,39 @@ import envConfig from '../../environment'
 const { isDev } = envConfig
 
 export const assetServer = async (ctx: Context): Promise<void> => {
-  const cssPath = `${isDev ? './dist/' : ''}${ctx.path.slice(1)}`
+  const contentTypes = [
+    { ext: 'css', ct: 'text/css' },
+    { ext: 'js', ct: 'text/javascript' }
+  ]
+  const assetPath = `${isDev ? './dist/' : ''}${ctx.path.slice(1)}`
+  let ext = ''
   try {
-    if (!fs.existsSync(cssPath)) {
+    ext = ctx.path
+      .split('/')
+      .slice(-1)[0]
+      .split('.')
+      .slice(-1)[0]
+  } catch (e) {
+    console.error('could not determine asset extension!')
+    console.info({ request: ctx.path })
+    ctx.status = 400
+    ctx.body = { message: 'could not determine asset extension!' }
+    return
+  }
+
+  try {
+    if (!fs.existsSync(assetPath)) {
       ctx.status = 404
       ctx.message = 'Not Found'
-      console.info('Could not serve asset, because it does not exists: ', { path: cssPath })
+      console.info('Could not serve asset, because it does not exists: ', { path: assetPath })
       return
     }
 
     ctx.status = 200
-    ctx.set('Content-Type', 'text/css')
-    ctx.body = await fs.readFileSync(`./${cssPath}`, { encoding: 'UTF-8', flag: 'r' })
+    ctx.set('Content-Type', contentTypes.find(({ ext: e }) => ext === e)?.ct ?? 'text/plain')
+    ctx.body = await fs.readFileSync(`./${assetPath}`, { encoding: 'UTF-8', flag: 'r' })
   } catch (e) {
-    console.error('could not serve asset:', cssPath)
+    console.error('could not serve asset:', assetPath)
     console.error(e.toString())
     ctx.status = 500
   }

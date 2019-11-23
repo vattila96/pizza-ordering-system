@@ -9,6 +9,6 @@ router.get('/', sayHello)
 // @ts-ignore
 router.get('/process-payment', processPayment)
 // @ts-ignore
-router.get(/^(.+).css$/, assetServer)
+router.get(/^(.+).(css|js)$/, assetServer)
 
 export default router
