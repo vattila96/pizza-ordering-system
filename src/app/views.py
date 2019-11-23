@@ -50,7 +50,8 @@ def profile(request):
 def pizzalist(request):
     if request.method == 'POST':
         keyword = request.POST.get("custompizza_name", None)
-        Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True).save()
+        if keyword != "":
+          Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True).save()
 
     pizzas = Pizza.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas}
