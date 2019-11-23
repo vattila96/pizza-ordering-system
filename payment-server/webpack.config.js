@@ -14,7 +14,8 @@ const nodeModules = fs
 module.exports = {
   entry: {
     server: './src/server.ts',
-    payment: './src/views/payment/payment.ts'
+    payment: './src/views/payment/payment.ts',
+    error: './src/views/error/error.ts'
   },
   output: {
     filename: '[name].js',
@@ -30,10 +31,7 @@ module.exports = {
           { loader: MiniCssExtractPlugin.loader },
           { loader: 'css-loader' },
           { loader: 'postcss-loader' },
-          {
-            loader: 'sass-loader',
-            options: { sourceMap: true }
-          }
+          { loader: 'sass-loader' }
         ]
       },
       {

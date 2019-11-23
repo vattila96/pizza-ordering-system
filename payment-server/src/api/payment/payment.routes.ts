@@ -1,13 +1,13 @@
 import Router from 'koa-router'
-import { sayHello, sayHelloWithMustache } from './payment.controller'
+import { sayHello, processPayment } from './payment.controller'
 import { assetServer } from '../asset-server'
 
 const router: Router = new Router()
 
 // @ts-ignore
-router.get('/', sayHelloWithMustache)
+router.get('/', sayHello)
 // @ts-ignore
-router.get('/hello-lean', sayHello)
+router.get('/process-payment', processPayment)
 // @ts-ignore
 router.get(/^(.+).css$/, assetServer)
 
