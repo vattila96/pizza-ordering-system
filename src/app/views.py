@@ -1,14 +1,16 @@
 import datetime
 import base64
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.utils.translation import gettext as _
 from .models import *
 from .domain.models import *
-
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from .forms import *
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
@@ -89,3 +91,21 @@ def myorders(request):
     context = {"myorders_page": "active",
                "myorders": myorders}
     return render(request, 'myorders.html', context)
+
+@login_required
+@transaction.atomic
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })

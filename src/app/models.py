@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Post(models.Model):
@@ -15,3 +18,25 @@ class Pizza(models.Model):
 
     def __str__(self):
         return self.name
+
+GENDER_CHOICES = (
+   ('M', 'Male'),
+   ('F', 'Female')
+)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=12, null=True, blank=True)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=128, default='M')
+    birthday = models.DateField(null=True, blank=True)
+    newsletter = models.BooleanField(default=True)
+    address_main = models.CharField(max_length=256, null=True, blank=True)
+    address_secondary = models.CharField(max_length=256, null=True, blank=True)
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    Profile.objects.get_or_create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
