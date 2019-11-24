@@ -86,6 +86,7 @@
                                             <h5 class="card-title">{{ pizza.name }}</h5>
                                             <p class="card-text">{{ pizza.description }}</p>
                                             <p class="card-text payment-row">
+                                                <span>{{ pizza.category }}</span><br>
                                                 <span>{{ pizza.price }} HUF</span>
                                                 {% if user.is_authenticated %}
                                                 <span class="float-right mr-4 mb-2">
@@ -129,6 +130,7 @@
                                             <h5 class="card-title">{{ pizza.name }}</h5>
                                             <p class="card-text">{{ pizza.description }}</p>
                                             <p class="card-text payment-row">
+                                                <span>{{ pizza.category }}</span><br>
                                                 <span>{{ pizza.price }} HUF</span>
                                                 {% if user.is_authenticated %}
                                                 <span class="float-right mr-4 mb-2">
