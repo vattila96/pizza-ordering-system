@@ -30,7 +30,12 @@
             <div class="row">
                 <div class="col-2 side-menu center-block">
                     {% for category in categories %}
-                    <button type="button" class="btn side-btn btn-lg btn-block">{{ category.name }}</button>
+                    <form action='categoryFilter' method='POST'>{% csrf_token %}
+                        <div>
+                            <button class="btn side-btn btn-lg btn-block" type="submit" name="category"
+                                value="{{ category.name }}">{{ category.name }}</button>
+                        </div>
+                    </form>
                     {% endfor %}
                     <div class="card shopping-cart">
                         <div class="card-body">
