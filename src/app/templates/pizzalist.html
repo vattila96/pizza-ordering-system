@@ -27,12 +27,9 @@
 
         <div class="row">
             <div class="col-2 side-menu center-block">
-                <button type="button" class="btn side-btn btn-lg btn-block">Pizza (30cm)</button>
-                <button type="button" class="btn side-btn btn-lg btn-block">Pizza (45cm)</button>
-                <button type="button" class="btn side-btn btn-lg btn-block">Pizza (60cm)</button>
-                <button type="button" class="btn side-btn btn-lg btn-block">Menus</button>
-                <button type="button" class="btn side-btn btn-lg btn-block">Desserts</button>
-                <button type="button" class="btn side-btn btn-lg btn-block">Beverages</button>
+                {% for category in categories %}
+                <button type="button" class="btn side-btn btn-lg btn-block">{{ category.name }}</button>
+                {% endfor %}
                 <div class="card shopping-cart">
                     <div class="card-body">
                         <h5 class="card-title">Total:</h5>
@@ -87,7 +84,6 @@
                                     <div class="col-md-10">
                                         <div class="card-body pizza-body">
                                             <h5 class="card-title">{{ pizza.name }}</h5>
-                                            <p class="card-text">{{ pizza.size }}cm</p>
                                             <p class="card-text">{{ pizza.description }}</p>
                                             <p class="card-text payment-row">
                                                 <span>{{ pizza.price }} HUF</span>
@@ -131,7 +127,6 @@
                                     <div class="col-md-10">
                                         <div class="card-body pizza-body">
                                             <h5 class="card-title">{{ pizza.name }}</h5>
-                                            <p class="card-text">{{ pizza.size }}cm</p>
                                             <p class="card-text">{{ pizza.description }}</p>
                                             <p class="card-text payment-row">
                                                 <span>{{ pizza.price }} HUF</span>

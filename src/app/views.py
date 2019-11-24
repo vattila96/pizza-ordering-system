@@ -53,7 +53,8 @@ def pizzalist(request):
         Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True).save()
 
     pizzas = Pizza.objects.all().order_by('-name')
-    context = {'pizzalist_page': 'active', 'pizzas': pizzas}
+    pizza_categories = PizzaCategory.objects.all().order_by('-name')
+    context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)
 
 
