@@ -38,10 +38,15 @@ h1 {
 
 .statuses {
   display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
   padding: 1rem 0;
   text-align: center;
+
+  @include for-tablet-portrait-up {
+    flex-direction: row;
+  }
 }
 
 .status-button {
@@ -51,7 +56,15 @@ h1 {
   font-weight: bold;
   padding: 10px 5px;
 
+  @include for-tablet-portrait-up {
+    margin-bottom: 0 !important;
+
+    &:first-child {
+      margin-right: 1rem;
+    }
+  }
+
   &:first-child {
-    margin-right: 1rem;
+    margin-bottom: 1rem;
   }
 }
