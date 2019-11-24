@@ -1,0 +1,54 @@
+.blind-body > * {
+    font-size: 2rem !important;
+    zoom: 1.5;
+}
+
+.blind-body > nav > div > ul > li {
+    /*font-size: 2rem;*/
+}
+
+.blind-body li > a {
+    font-size: 1.2rem;
+    color: white !important;
+}
+
+.blind-body > nav > button {
+    background: white;
+}
+
+.blind-body > footer > div {
+    background-color: black !important;
+    color: white !important;
+}
+
+.blind-body > nav {
+    background-color: black !important;
+}
+
+.blind-body > main > div > div > div > button {
+    background: black;
+    color: white;
+    font-size: 2rem;
+    padding-bottom: 35%;
+}
+
+.blind-body .allergens {
+    color: white;
+}
+
+.blind-body .card-body {
+    color: black;
+}
+
+.blind-body > main > * > * {
+    background: black;
+    color: white;
+}
+
+.blind-body .table-warning > th {
+    background: black;
+}
+
+.blind-body .warn {
+    background: black;
+}
