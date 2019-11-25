@@ -59,7 +59,10 @@ def pizzalist(request):
 
 def categoryfilter(request):
     category = request.POST.get("category", None)
-    pizzas = Pizza.objects.filter(category__name=category)
+    if category == "all":
+      pizzas = Pizza.objects.all().order_by('-name')
+    else:
+      pizzas = Pizza.objects.filter(category__name=category)
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)

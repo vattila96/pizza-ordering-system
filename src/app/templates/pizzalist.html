@@ -29,6 +29,12 @@
 
             <div class="row">
                 <div class="col-2 side-menu center-block">
+                    <form action='categoryFilter' method='POST'>{% csrf_token %}
+                        <div>
+                            <button class="btn side-btn btn-lg btn-block" type="submit" name="category"
+                                value="all">All Items</button>
+                        </div>
+                    </form>
                     {% for category in categories %}
                     <form action='categoryFilter' method='POST'>{% csrf_token %}
                         <div>
