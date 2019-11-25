@@ -13,5 +13,6 @@ urlpatterns = [
     path('pizzalist/', views.pizzalist, name='pizzalist'),
     path('myorders/', views.myorders, name='myorders'),
     path('pizzalist/pizzaSearch', views.pizzasearch, name='pizzasearch'),
+    path('pizzalist/pizzaReset', views.pizzareset, name='pizzareset'),
     path('pizzalist/categoryFilter', views.categoryfilter, name='categoryfilter'),
 ]

@@ -52,7 +52,8 @@ def profile(request):
 def pizzalist(request):
     if request.method == 'POST':
         keyword = request.POST.get("custompizza_name", None)
-        Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True).save()
+        if keyword != "":
+          Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True).save()
 
     pizzas = Pizza.objects.all().order_by('-name')
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
@@ -75,6 +76,13 @@ def pizzasearch(request):
     name_contains = Pizza.objects.filter(name__icontains=keyword)
     description_contains = Pizza.objects.filter(description__icontains=keyword)
     pizzas = (name_contains | description_contains).order_by('-name')
+    pizza_categories = PizzaCategory.objects.all().order_by('-name')
+    context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
+    return render(request, 'pizzalist.html', context)
+
+def pizzareset(request):
+    keyword = request.POST.get("reset_keyword", None)
+    pizzas = Pizza.objects.all().order_by('-name')
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)
