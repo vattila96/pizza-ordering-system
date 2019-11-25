@@ -53,7 +53,18 @@ def pizzalist(request):
         Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True).save()
 
     pizzas = Pizza.objects.all().order_by('-name')
-    context = {'pizzalist_page': 'active', 'pizzas': pizzas}
+    pizza_categories = PizzaCategory.objects.all().order_by('-name')
+    context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
+    return render(request, 'pizzalist.html', context)
+
+def categoryfilter(request):
+    category = request.POST.get("category", None)
+    if category == "all":
+      pizzas = Pizza.objects.all().order_by('-name')
+    else:
+      pizzas = Pizza.objects.filter(category__name=category)
+    pizza_categories = PizzaCategory.objects.all().order_by('-name')
+    context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)
 
 
@@ -62,7 +73,8 @@ def pizzasearch(request):
     name_contains = Pizza.objects.filter(name__icontains=keyword)
     description_contains = Pizza.objects.filter(description__icontains=keyword)
     pizzas = (name_contains | description_contains).order_by('-name')
-    context = {'pizzalist_page': 'active', 'pizzas': pizzas}
+    pizza_categories = PizzaCategory.objects.all().order_by('-name')
+    context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)
 
 def myorders(request):
