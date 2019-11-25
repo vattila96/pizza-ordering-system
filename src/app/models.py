@@ -9,9 +9,20 @@ class Post(models.Model):
     photo = models.TextField()
 
 
-class Pizza(models.Model):
+class PizzaCategory(models.Model):
     name = models.CharField(max_length=100)
-    size = models.PositiveIntegerField(default=30)
+
+    class Meta:
+        verbose_name_plural = "categories"
+
+    def __str__(self):
+        return self.name
+
+
+class Pizza(models.Model):
+    category = models.ForeignKey(PizzaCategory, on_delete=models.CASCADE)
+    
+    name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.PositiveIntegerField(default=0)
     is_custom_pizza = models.BooleanField(default=False)
