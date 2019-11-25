@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, PizzaCategory, Pizza
+from .models import Post, Pizza, Profile, PizzaCategory
 from .domain.models import Address, Courier, DrinkProduct, EmailTemplate, FoodProduct, Ingredient, Order, OrderItem, \
     PriviligeLevel, Transaction, User, UserPizza
 
@@ -19,3 +19,4 @@ admin.site.register(PriviligeLevel)
 admin.site.register(Transaction)
 admin.site.register(User)
 admin.site.register(UserPizza)
+admin.site.register(Profile)
