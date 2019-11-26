@@ -9,8 +9,10 @@ urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),
     path('pizzas/', views.pizzas, name='pizzas'),
     path('signup/', views.SignUp.as_view(), name='signup'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/', views.update_profile, name='profile'),
     path('pizzalist/', views.pizzalist, name='pizzalist'),
     path('myorders/', views.myorders, name='myorders'),
     path('pizzalist/pizzaSearch', views.pizzasearch, name='pizzasearch'),
+    path('pizzalist/pizzaReset', views.pizzareset, name='pizzareset'),
+    path('pizzalist/categoryFilter', views.categoryfilter, name='categoryfilter'),
 ]

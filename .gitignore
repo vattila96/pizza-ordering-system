@@ -101,6 +101,6 @@ Temporary Items
 .apdisk
 .idea
 src/radixProject/account_data
-src/app/migration/000*
+src/app/migrations/000*
 payment-server/node_modules
 payment-server/dist
