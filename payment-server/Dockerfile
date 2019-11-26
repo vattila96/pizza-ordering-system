@@ -10,10 +10,13 @@ RUN mkdir -p $APP_DIR
 WORKDIR $APP_DIR
 
 COPY .env webpack.config.js tsconfig.json environment.* postcss.config.js ./
-COPY src src/
 COPY package.json yarn.lock ./
 
+# installing dependencies for the container inside (linux deps)
 RUN yarn install
-RUN yarn build
 
-CMD ["node", "./dist/server.js"]
+RUN mkdir src
+
+# this will run your local code via the system inside the container.
+# You can make changes locally and they will be reflected after restart (only in src, otherwise rebuild is required).
+CMD yarn cold-start

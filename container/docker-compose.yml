@@ -27,7 +27,7 @@ services:
          - ENVIONRMENT=production
          - APP_DIR=usr/src/app
      volumes:
-       - ../payment-server:/usr/src/app
+       - ../payment-server/src:/usr/src/app/src
      restart: always
      expose:
        - "9000"

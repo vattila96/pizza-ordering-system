@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "start": "node ./dist/server.js",
+    "cold-start": "yarn build && node ./dist/server.js",
     "dev": "rimraf dist && cross-env ENVIRONMENT=development webpack --mode=development",
     "build": "rimraf dist && cross-env ENVIRONMENT=production webpack --mode=production",
     "ts-check": "tsc --noEmit",
