@@ -22,9 +22,7 @@ class CartAddProductForm(forms.Form):
 @require_POST
 def cart_add(request, product_id):
     cart = Cart(request)
-    print(request)
-    print(cart)
-    product = get_object_or_404(FoodProduct, id=product_id)
+    product = get_object_or_404(Pizza, id=product_id)
     form = CartAddProductForm(request.POST)
     if form.is_valid():
         cd = form.cleaned_data
@@ -35,7 +33,7 @@ def cart_add(request, product_id):
 
 def cart_remove(request, product_id):
     cart = Cart(request)
-    product = get_object_or_404(FoodProduct, id=product_id)
+    product = get_object_or_404(Pizza, id=product_id)
     cart.remove(product)
     return redirect('shoppingcart')
 
@@ -44,31 +42,6 @@ def cart_detail(request):
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
     return render(request, 'shoppingcart.html', {'cart': cart})
-
-def product_list(request, category_slug=None):
-    category = None
-    categories = Category.objects.all()
-    products = FoodProduct.objects.filter(available=True)
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=category)
-
-    context = {
-        'category': category,
-        'categories': categories,
-        'products': products
-    }
-    return render(request, 'shop/product/list.html', context)
-
-
-def product_detail(request, id, slug):
-    product = get_object_or_404(FoodProduct, id=id, slug=slug, available=True)
-    cart_product_form = CartAddProductForm()
-    context = {
-        'product': product,
-        'cart_product_form': cart_product_form
-    }
-    return render(request, 'shop/product/detail.html', context)
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm

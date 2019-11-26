@@ -1,6 +1,6 @@
 from decimal import Decimal
 from django.conf import settings
-from .domain.models import FoodProduct
+from .models import Pizza
 
 
 class Cart(object):
@@ -34,7 +34,7 @@ class Cart(object):
 
     def __iter__(self):
         product_ids = self.cart.keys()
-        products = FoodProduct.objects.filter(id__in=product_ids)
+        products = Pizza.objects.filter(id__in=product_ids)
         for product in products:
             self.cart[str(product.id)]['product'] = product
 

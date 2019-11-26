@@ -91,7 +91,7 @@
                                             <p class="card-text payment-row">
                                                 <span>{{ pizza.price }} HUF</span>
                                                 {% if user.is_authenticated %}
-                                                <form action="{% url "cart_add" 1 %}" method="post">
+                                                <form action="{% url "cart_add" pizza.id %}" method="post">
                                                     {% csrf_token %}
                                                     <span class="float-right mr-4 mb-2">
                                                         <input type="submit" class="btn btn-secondary" style="background-color: green" value="Add to cart">
@@ -140,7 +140,7 @@
                                             <p class="card-text payment-row">
                                                 <span>{{ pizza.price }} HUF</span>
                                                 {% if user.is_authenticated %}
-                                                    <form action="{% url "cart_add" 1 %}" method="post">
+                                                    <form action="{% url "cart_add" pizza.id %}" method="post">
                                                         {% csrf_token %}
                                                         <span class="float-right mr-4 mb-2">
                                                             <input type="submit" class="btn btn-secondary" style="background-color: green" value="Add to cart">
@@ -484,10 +484,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-12">
                                 <div class="d-flex flex-row justify-content-end pt-4">
-                                    <form action="{% url "cart_add" 1 %}" method="post">
+                                    <form action="" method="post">
                                         {% csrf_token %}
                                         <span class="float-right mr-4 mb-2">
                                             <input type="submit" class="btn btn-primary" value="Add to cart">
@@ -495,7 +495,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                         <hr/>
                         <div class="row">
                             <div class="col-12">
@@ -824,10 +824,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-12">
                                 <div class="d-flex flex-row justify-content-end pt-4">
-                                    <form action="{% url "cart_add" 1 %}" method="post">
+                                    <form action="" method="post">
                                         {% csrf_token %}
                                         <span class="float-right mr-4 mb-2">
                                             <input type="submit" class="btn btn-primary" value="Add to cart">
@@ -835,7 +835,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                         <hr/>
                         <div class="row">
                             <div class="col-12">
