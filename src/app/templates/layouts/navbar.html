@@ -53,12 +53,13 @@
                 </div>
             </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <span style="margin: 3%">
-                <img type="image" onclick="myFunction()" src="../../../media/accessibility/accessibility_logo.png" height="26"
-                     width="26"/>
-            </span>
 
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class=navbar-brand">
+                    <img type="image" class="accessiblity_logo" onclick="myFunction()" src="../../../media/accessibility/accessibility_logo.png" height="26"
+                         width="26" alt="Akadálymentes"/>
+            </li>
             {{ MEDIA_ROOT }}
             {% get_current_language as LANGUAGE_CODE %}
             <li class="navbar-brand">
