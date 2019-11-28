@@ -19,10 +19,8 @@ class SignUp(generic.CreateView):
 
 
 def index(request):
-    p = Post(date=datetime.datetime.now(), photo=random_picture())
-    p.save(force_insert=True)
-    posts = Post.objects.filter().order_by('-date')
-    return render(request, 'index.html', {'posts': posts, "home_page": "active"})
+    home_page_detail = HomePageDetail.objects.last()
+    return render(request, 'index.html', {'home_page_detail': home_page_detail, "home_page": "active"})
 
 
 def pizzas(request):
