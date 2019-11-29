@@ -19,27 +19,41 @@
 		
 	<main role="main">
 		<div class="text-center rounded mb-12">
-			<img class="img-fluid rounded" src="https://source.unsplash.com/random/1200x300" alt="Főoldal kép"/>
+			{% if home_page_detail.main_image %}
+				<img class="img-fluid rounded" src="{{ home_page_detail.main_image.url }}" alt="Főoldal kép"/>
+			{% else %}
+				<img class="img-fluid rounded" src="/media/main_pizza.jpg" alt="Főoldal kép"/>
+			{% endif %}			
 		</div>
 		<div class="container bg-dark text-light border rounded mb-12 mt-4">
 			<div class="row mb-3 mt-3 ml-1">
 				<div class="col-6">
 					<div class="row"><h3>Pizzériánkról</h3></div>
-					<p>
-							A pizza olasz eredetű étel, ami mára az egész világon elterjedt. <br>
-							Alapja egy kelt tésztából készült vékony lepénykenyér, melyet paradicsom vagy tejföl alapú szósszal borítanak,  <br>
-							és erre különféle feltétek kerülnek, (a leggyakoribbak a különféle zöldségek, gomba és felvágottak),  <br>
-							a tésztát végül reszelt sajttal szórják meg és sütőben megsütik.  <br>
-							Jellegzetes fűszerei közé tartozik az oregánó és a pepperoni.  <br>
-							Az eredeti olasz pizzára szeletelt mozzarellát, bazsalikomot és olíva olajat tesznek, erre kerülhet további feltét.
-					</p>
+						{% if home_page_detail.main_image %}
+							<p>
+								{{ home_page_detail.description_text }}
+							</p>
+						{% else %}
+							<p>
+								A pizza olasz eredetű étel, ami mára az egész világon elterjedt. <br>
+								Alapja egy kelt tésztából készült vékony lepénykenyér, melyet paradicsom vagy tejföl alapú szósszal borítanak,  <br>
+								és erre különféle feltétek kerülnek, (a leggyakoribbak a különféle zöldségek, gomba és felvágottak),  <br>
+								a tésztát végül reszelt sajttal szórják meg és sütőben megsütik.  <br>
+								Jellegzetes fűszerei közé tartozik az oregánó és a pepperoni.  <br>
+								Az eredeti olasz pizzára szeletelt mozzarellát, bazsalikomot és olíva olajat tesznek, erre kerülhet további feltét.
+							</p>
+						{% endif %}	
 				</div>
 				<div class="col-6">
 					<div class="row"><h3>Térkép</h3></div>
 					<div class="row">
 						<div class="mapouter">
 							<div class="gmap_canvas">
-								<iframe width="500" height="260" id="gmap_canvas" src="https://maps.google.com/maps?q=hungary%20pizza&t=&z=7&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+								{% if home_page_detail.main_image %}
+									<iframe width="500" height="260" id="gmap_canvas" src="https://maps.google.com/maps?q={{ home_page_detail.latitude|safe }},{{ home_page_detail.longitude|safe }}&hl=hu;z=14&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+								{% else %}
+									<iframe width="500" height="260" id="gmap_canvas" src="https://maps.google.com/maps?q=47.497913,19.040236&hl=hu;z=14&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+								{% endif %}	
 								<a href="https://www.embedgooglemap.net/blog/best-wordpress-themes/">embedgooglemap.net</a>
 							</div>
 						</div>
@@ -49,20 +63,36 @@
 			<div class="row mb-3 mt-3 ml-1">
 				<div class="rounded row col-12">
 					<div class="col-3 text-left">
-						<span class="badge badge-pill badge-success">Akciós</span>
-						<img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+						<span class="badge badge-pill badge-success">Akciós</span>					
+							{% if home_page_detail.main_image %}
+								<img src="{{ home_page_detail.on_sale_pizza_1.url }}" class="card-img" alt="...">
+							{% else %}
+								<img src="/media/random-pizza.jpg" class="card-img" alt="...">
+							{% endif %}	
 					</div>
 					<div class="col-3 text-left">
-						<span class="badge badge-pill badge-success">Akciós</span>
-						<img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+						<span class="badge badge-pill badge-success">Akciós</span>						
+							{% if home_page_detail.main_image %}
+								<img src="{{ home_page_detail.on_sale_pizza_2.url }}" class="card-img" alt="...">
+							{% else %}
+								<img src="/media/random-pizza.jpg" class="card-img" alt="...">
+							{% endif %}							
 					</div>
 					<div class="col-3 text-right">
-						<span class="badge badge-pill badge-info">Ajánlott</span>
-						<img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+						<span class="badge badge-pill badge-info">Ajánlott</span>					
+							{% if home_page_detail.main_image %}
+								<img src="{{ home_page_detail.recommended_pizza_1.url }}" class="card-img" alt="...">
+							{% else %}
+								<img src="/media/random-pizza.jpg" class="card-img" alt="...">
+							{% endif %}							
 					</div>
 					<div class="col-3 text-right">
-						<span class="badge badge-pill badge-info">Ajánlott</span>
-						<img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+						<span class="badge badge-pill badge-info">Ajánlott</span>					
+							{% if home_page_detail.main_image %}
+								<img src="{{ home_page_detail.recommended_pizza_2.url }}" class="card-img" alt="...">
+							{% else %}
+								<img src="/media/random-pizza.jpg" class="card-img" alt="...">
+							{% endif %}							
 					</div>
 				</div>
 			</div>
