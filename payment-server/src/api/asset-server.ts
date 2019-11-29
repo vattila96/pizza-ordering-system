@@ -1,15 +1,13 @@
-import fs from 'fs'
 import { Context } from 'koa'
-
-import envConfig from '../../environment'
-const { isDev } = envConfig
+import fs from 'fs'
+import path from 'path'
 
 export const assetServer = async (ctx: Context): Promise<void> => {
   const contentTypes = [
     { ext: 'css', ct: 'text/css' },
     { ext: 'js', ct: 'text/javascript' }
   ]
-  const assetPath = `${isDev ? './dist/' : ''}${ctx.path.slice(1)}`
+  const assetPath = path.resolve(process.cwd(), 'dist', ctx.path.slice(1))
   let ext = ''
   try {
     ext = ctx.path
@@ -35,7 +33,7 @@ export const assetServer = async (ctx: Context): Promise<void> => {
 
     ctx.status = 200
     ctx.set('Content-Type', contentTypes.find(({ ext: e }) => ext === e)?.ct ?? 'text/plain')
-    ctx.body = fs.readFileSync(`./${assetPath}`, { encoding: 'UTF-8', flag: 'r' })
+    ctx.body = fs.readFileSync(assetPath, { encoding: 'UTF-8', flag: 'r' })
   } catch (e) {
     console.error('could not serve asset:', assetPath)
     console.error(e.toString())
