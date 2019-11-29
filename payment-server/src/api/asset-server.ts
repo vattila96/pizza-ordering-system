@@ -35,7 +35,7 @@ export const assetServer = async (ctx: Context): Promise<void> => {
 
     ctx.status = 200
     ctx.set('Content-Type', contentTypes.find(({ ext: e }) => ext === e)?.ct ?? 'text/plain')
-    ctx.body = await fs.readFileSync(`./${assetPath}`, { encoding: 'UTF-8', flag: 'r' })
+    ctx.body = fs.readFileSync(`./${assetPath}`, { encoding: 'UTF-8', flag: 'r' })
   } catch (e) {
     console.error('could not serve asset:', assetPath)
     console.error(e.toString())
