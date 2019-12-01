@@ -1,0 +1,70 @@
+@import '../common';
+
+// stylelint-disable-next-line
+body {
+  color: $black;
+}
+
+// stylelint-disable-next-line
+h1 {
+  font-size: 24px;
+  margin-bottom: 0.5rem;
+}
+
+.container {
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 30%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 90%;
+
+  @include for-tablet-portrait-up {
+    width: 60%;
+  }
+}
+
+.text {
+  @include round-borders(10px);
+  background: $white;
+  font-size: 20px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+}
+
+.statuses {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 1rem 0;
+  text-align: center;
+
+  @include for-tablet-portrait-up {
+    flex-direction: row;
+  }
+}
+
+.status-button {
+  border: 0;
+  flex: 1 0 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 5px;
+
+  @include for-tablet-portrait-up {
+    margin-bottom: 0 !important;
+
+    &:first-child {
+      margin-right: 1rem;
+    }
+  }
+
+  &:first-child {
+    margin-bottom: 1rem;
+  }
+}
