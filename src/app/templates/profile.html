@@ -12,6 +12,7 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
     <title>Pizza - Profile</title>
   </head>
   <body>
@@ -19,16 +20,18 @@
     {% block content %}{% endblock %}
 
     <main role="main">
-      <h1 class="text-center">Profile - {{user.username}}</h1>
-      <form method="post">
-        {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        <button type="submit">Update</button>
-      </form>
+      <div class="container bg-blue text-light pb-4">
+        <h1 class="text-center">Profile - {{user.username}}</h1>
+        <form method="post">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+          <button class="btn" type="submit">Update</button>
+        </form>
+      </div>
     </main>
 
-    <footer class="text-muted mt-4">
+    <footer class="text-muted">
       {% include 'layouts/footer.html' %}
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

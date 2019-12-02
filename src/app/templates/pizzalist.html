@@ -13,6 +13,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../../static/css/pizzalist.css">
     <link rel="stylesheet" href="{% static 'css/album.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -25,10 +26,9 @@
     {% block content %}{% endblock %}
     <main role="main">
         <!--    <h1>Pizzalist</h1>-->
-        <div class="fluid-container container-background">
-
+        <div class="fluid-container bg-blue text-light container-background">
             <div class="row">
-                <div class="col-2 side-menu center-block">
+                <div class="col-2 center-block">
                     <form action='categoryFilter' method='POST'>{% csrf_token %}
                         <div>
                             <button class="btn side-btn btn-lg btn-block" type="submit" name="category"
@@ -45,32 +45,31 @@
                     {% endfor %}
 
                     
-                    <div class="card shopping-cart">
+                    <div class="blue-card card shopping-cart">
                         <div class="card-body">
                             <h5 class="card-title">Total:</h5>
                             <p class="card-text">0 huf</p>
-                            {% include 'shoppingcart.html' %}
                             <button data-toggle="modal" data-target="#shopping-cart-modal" type="button"
-                                class="btn btn-secondary">Check Cart
+                                class="btn">Check Cart
                             </button>
                         </div>
                     </div>
 
                 </div>
-                <div class="col">
-                    <div class="input-group mb-3 corner">
+                <div class="col-10">
+                    <div class="input-group mt-3 justify-content-end">
                         <form action='pizzaSearch' method='POST'>{% csrf_token %}
                             <div class="input-group-append">
                                 <input name="search_keyword" type="text" class="form-control"
                                     placeholder="Search for pizza">
-                                <button class="btn btn-outline-secondary" type="submit"
+                                <button class="btn" type="submit"
                                     id="button-addon2">Search</button>
                             </div>
                         </form>
 
                         <form action='pizzaReset' method='POST'>{% csrf_token %}
                             <div class="input-group-append">                        
-                                <button name="reset_keyword" class="btn btn-outline-secondary" type="submit" id="button-addon2" style="color: blue"><u>Reset</u></button>
+                                <button name="reset_keyword" class="btn" type="submit" id="button-addon2">Reset</button>
                             </div>
                         </form>
                     </div>
@@ -91,17 +90,17 @@
 
                     </div>
                     <div class="pizza-list">
-                        <div class="mb-3 pizza-card center">
+                        <div class="mb-3 center">
                             <div class=" w-25">
                                 <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
-                                    type="button" class="btn btn-secondary">Create custom pizza
+                                    type="button" class="btn">Create custom pizza
                                 </button>
                             </div>
                         </div>
                         {% for pizza in pizzas %}
                         {% if pizza.is_custom_pizza %}
 
-                        <div class="card mb-3 bg-dark text-light pizza-card center">
+                        <div class="card mb-3 text-light center">
                             <div class="row no-gutters">
                                 <div class="col-md-2">
                                     <!--<img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">-->
@@ -144,40 +143,39 @@
                         {% for pizza in pizzas %}
                         {% if pizza.is_custom_pizza %}
                         {% else %}
-                            <div class="card mb-3 bg-dark text-light pizza-card center">
-                                <div class="row no-gutters">
-                                    <div class="col-md-2">
-                                        {% if pizza.image %}
-                                            <img src="{{ pizza.image.url }}" class="card-img" alt="...">
-                                        {%  else %}
-                                            <img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
-                                        {% endif %}
+                        <div class="card mb-3 text-light center">
+                            <div class="row no-gutters">
+                                <div class="col-md-2">
+                                    {% if pizza.image %}
+                                        <img src="{{ pizza.image.url }}" class="card-img" alt="...">
+                                    {%  else %}
+                                        <img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body pizza-body">
+                                        <h5 class="card-title">{{ pizza.name }}</h5>
+                                        <p class="card-text">{{ pizza.size }}</p>
+                                        <p class="card-text">{{ pizza.description }}</p>
+                                        <p class="card-text payment-row">
+                                            <span>{{ pizza.category }}</span><br>
+                                            <span>{{ pizza.price }} HUF</span>
+                                            {% if user.is_authenticated %}
+                                            <span class="float-right mr-4 mb-2">
+                                                <button class="btn btn-secondary"
+                                                        style="background-color: green">Buy</button></span>
+                                            <span class="float-right">
+                                            {% else %}
+                                            <span class="float-right mr-4 mb-2">
+                                                <button title="You need to be logged in to add items to the shopping cart"
+                                                        class="btn"
+                                                        style="background-color: gray"
+                                                        disabled>Buy</button></span>
+                                            <span class="float-right">     
+                                            {% endif %}
+                                        </p>
                                     </div>
-                                    <div class="col-md-10">
-                                        <div class="card-body pizza-body">
-                                            <h5 class="card-title">{{ pizza.name }}</h5>
-                                            <p class="card-text">{{ pizza.size }}</p>
-                                            <p class="card-text">{{ pizza.description }}</p>
-                                            <p class="card-text payment-row">
-                                                <span>{{ pizza.category }}</span><br>
-                                                <span>{{ pizza.price }} HUF</span>
-                                                {% if user.is_authenticated %}
-                                                <span class="float-right mr-4 mb-2">
-                                                    <button class="btn btn-secondary"
-                                                            style="background-color: green">Buy</button></span>
-                                                <span class="float-right">
-                                                {% else %}
-                                                <span class="float-right mr-4 mb-2">
-                                                    <button title="You need to be logged in to add items to the shopping cart"
-                                                            class="btn btn-secondary"
-                                                            style="background-color: gray"
-                                                            disabled>Buy</button></span>
-                                                <span class="float-right">     
-                                                {% endif %}
-                                            </p>
-                                        </div>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -531,7 +529,7 @@
 
 
 <!-- CUSTOMIZE PIZZA MODAL FOR CREATE PIZZA-->
-<div class="modal fade" id="customize-pizza-modal-for-custompizza" tabindex="-1" role="dialog" aria-labelledby="customize-pizza"
+    <div class="modal fade" id="customize-pizza-modal-for-custompizza" tabindex="-1" role="dialog" aria-labelledby="customize-pizza"
      aria-hidden="true">
     <div class="modal-dialog custom-pizza-modal" role="document">
         <div class="modal-content">
@@ -546,7 +544,8 @@
                     <div class="col-4 right-col">
                         <div class="row">
                             <div class="col-12">
-                                <form action="" method="POST">{% csrf_token %}
+                                <form action="" method="POST">
+                                    {% csrf_token %}
                                     <form>
                                         <div class="form-group">
                                             <label for="name">Name</label>
@@ -566,6 +565,8 @@
             </div>
         </div>
     </div>
+
+    {% include 'shoppingcart.html' %}
 </div>
 
 <!-- CUSTOMIZE PIZZA MODAL FOR CUSTOM PIZZA END -->
