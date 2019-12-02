@@ -18,5 +18,20 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+  payment-server:
+     build:
+       context: ../payment-server
+       dockerfile: Dockerfile
+     environment:
+         - HTTP_PORT=9000
+         - ENVIONRMENT=production
+         - APP_DIR=usr/src/app
+     volumes:
+       - ../payment-server/src:/usr/src/app/src
+     restart: always
+     expose:
+       - "9000"
+     ports:
+       - "9000:9000"
 volumes:
     pgdata:

@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Post, Pizza
-from .domain.models import Address, Courier, DrinkProduct, EmailTemplate, FoodProduct, Ingredient, Order, OrderItem, \
+from .models import Post, Pizza, Profile, PizzaCategory
+from .domain.models import Address, HomePageDetail, Courier, DrinkProduct, EmailTemplate, FoodProduct, Ingredient, Order, OrderItem, \
     PriviligeLevel, Transaction, User, UserPizza
 
 # Register your models here.
 admin.site.register(Post)
+admin.site.register(PizzaCategory)
 admin.site.register(Pizza)
 admin.site.register(Address)
 admin.site.register(Courier)
@@ -18,3 +19,5 @@ admin.site.register(PriviligeLevel)
 admin.site.register(Transaction)
 admin.site.register(User)
 admin.site.register(UserPizza)
+admin.site.register(Profile)
+admin.site.register(HomePageDetail)

@@ -314,3 +314,27 @@ class User(AbstractBaseUser):
 
     def get_update_url(self):
         return reverse("PizzaDeliverySystem_User_update", args=(self.pk,))
+
+    
+class HomePageDetail(models.Model):
+
+    main_image = models.ImageField(upload_to='index_images', default='main_pizza.jpg', blank=False)
+    on_sale_pizza_1 = models.ImageField(upload_to='index_images', default='random-pizza.jpg', blank=False)
+    on_sale_pizza_2 = models.ImageField(upload_to='index_images', default='random-pizza.jpg', blank=False)
+    recommended_pizza_1 = models.ImageField(upload_to='index_images', default='random-pizza.jpg', blank=False)
+    recommended_pizza_2 = models.ImageField(upload_to='index_images', default='random-pizza.jpg', blank=False)
+    description_text = models.TextField(default="Add some description text...", blank=False)
+    latitude = models.FloatField(default=47.497913 , blank=False)
+    longitude = models.FloatField(default=19.040236 , blank=False)
+
+    class Meta:
+        pass
+
+    def __str__(self):
+        return str(self.pk)
+
+    def get_absolute_url(self):
+        return reverse("PizzaDeliverySystem_HomePageDetail_detail", args=(self.pk,))
+
+    def get_update_url(self):
+        return reverse("PizzaDeliverySystem_HomePageDetail_update", args=(self.pk,))
