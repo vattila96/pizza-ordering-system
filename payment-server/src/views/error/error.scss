@@ -1,0 +1,17 @@
+@import '../common';
+
+.container {
+  @include round-borders(5px);
+  background-color: $error-red;
+  left: 50%;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 90%;
+
+  @include for-tablet-portrait-up {
+    padding: 30px;
+    width: 60%;
+  }
+}

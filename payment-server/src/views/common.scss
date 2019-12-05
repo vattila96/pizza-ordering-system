@@ -1,0 +1,30 @@
+@import '~reset-css';
+@import './misc/mixins';
+@import './misc/colors';
+
+// stylelint-disable-next-line
+body {
+  background-color: $gray;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+// stylelint-disable-next-line
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.container {
+  background-color: $kings-blood;
+  padding: 10px;
+
+  @include for-tablet-portrait-up {
+    padding: 20px;
+  }
+}

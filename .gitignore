@@ -102,3 +102,5 @@ Temporary Items
 .idea
 src/radixProject/account_data
 src/app/migrations/000*
+payment-server/node_modules
+payment-server/dist

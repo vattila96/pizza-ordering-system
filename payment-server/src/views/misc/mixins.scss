@@ -1,0 +1,9 @@
+@mixin round-borders($size: 5px) {
+  border-radius: $size;
+}
+
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
