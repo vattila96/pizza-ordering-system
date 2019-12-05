@@ -2,6 +2,17 @@
 
 <header>
     <link rel="stylesheet" href="../../static/css/accessibility.css">
+    <script>
+        window.onload= function () {
+            var element = document.body;
+            var contrastMode = getCookie("contrastMode");
+            if(contrastMode !== "true"){
+                element.classList.remove("blind-body");
+            }else{
+                element.classList.add("blind-body");
+            }
+        }
+    </script>
 </header>
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFF8DC">
@@ -87,8 +98,24 @@
 </nav>
 
 <script>
+    function getCookie(name) {
+        var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return v ? v[2] : null;
+    }
+    function setCookie(name, value, days) {
+        var d = new Date;
+        d.setTime(d.getTime() + 24*60*60*1000*days);
+        document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+    }
     function myFunction() {
         var element = document.body;
-        element.classList.toggle("blind-body");
+        var contrastMode = getCookie("contrastMode");
+        if(contrastMode !== "true"){
+            element.classList.add("blind-body");
+            setCookie("contrastMode","true",0.15);
+        }else{
+            element.classList.remove("blind-body");
+            setCookie("contrastMode","false",0.15);
+        }
     }
 </script>
