@@ -63,3 +63,55 @@ msgstr "Összesen"
 #: app/templates/myorders.html:63
 msgid "Reorder"
 msgstr "Újrarendelés"
+
+#: app/templates/layout/navbar.html:10
+msgid "Home"
+msgstr "Kezdőlap"
+
+#: app/templates/layout/navbar.html:13
+msgid "Pizzas"
+msgstr "Pizzák"
+
+#: app/templates/layout/navbar.html:17
+msgid "Profile"
+msgstr "Profil"
+
+#: app/templates/layout/navbar.html:20
+msgid "My orders"
+msgstr "Rendeléseim"
+
+#: app/templates/layout/navbar.html:23
+msgid "Reset password"
+msgstr "Jelszó visszaállítása"
+
+#: app/templates/layout/navbar.html:26
+msgid "Log out"
+msgstr "Kijelentkezés"
+
+#: app/templates/layout/navbar.html:30
+msgid "Sign up"
+msgstr "Regisztráció"
+
+#: app/templates/layout/navbar.html:33
+msgid "Log in"
+msgstr "Bejelentkezés"
+
+#: app/templates/layout/navbar.html:37
+msgid "Go to Admin"
+msgstr "Admin felület"
+
+#: app/templates/layout/navbar.html:41
+msgid "Contact"
+msgstr "Kapcsolat"
+
+#: app/templates/layout/navbar.html:44
+msgid "Follow on Twitter"
+msgstr "Kövess Twitteren"
+
+#: app/templates/layout/navbar.html:46
+msgid "Like on Facebook"
+msgstr "Lájkolj Facebookon"
+
+#: app/templates/layout/navbar.html:48
+msgid "Email me"
+msgstr "Email küldés"
