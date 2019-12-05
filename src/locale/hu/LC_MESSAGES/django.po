@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#: app/templates/pizza/pizzexample.html:37
+msgid "Magyar szöveg..."
+msgstr "English text..."
+
+#: app/views.py:33
+msgid "(teszt fordítás)"
+msgstr "(test translate)"
+
+#: app/urls.py:9
+msgid "pizzak/"
+msgstr "pizzas/"
+
+#: app/templates/index.html:31
+msgid "Our pizzeria"
+msgstr "Pizzériánkról"
+
+#: app/templates/index.html:38
+msgid "Our pizzeria's description"
+msgstr "A pizza olasz eredetű étel, ami mára az egész világon elterjedt. Alapja egy kelt tésztából készült vékony lepénykenyér, melyet paradicsom vagy tejföl alapú szósszal borítanak, és erre különféle feltétek kerülnek, (a leggyakoribbak a különféle zöldségek, gomba és felvágottak), a tésztát végül reszelt sajttal szórják meg és sütőben megsütik. Jellegzetes fűszerei közé tartozik az oregánó és a pepperoni. Az eredeti olasz pizzára szeletelt mozzarellát, bazsalikomot és olíva olajat tesznek, erre kerülhet további feltét."
+
+#: app/templates/index.html:42
+msgid "Map"
+msgstr "Térkép"
+
+#: app/templates/index.html:60 app/templates/index.html:68
+msgid "On sale"
+msgstr "Akciós"
+
+#: app/templates/index.html:76 app/templates/index.html:84
+msgid "Recommended"
+msgstr "Ajánlott"
+
+#: app/templates/myorders.html:23
+msgid "My previous orders"
+msgstr "Előző rendeléseim"
+
+#: app/templates/myorders.html:28
+msgid "Food delivery:"
+msgstr "Futár:"
+
+#: app/templates/myorders.html:46
+msgid "Shipping here:"
+msgstr "Szállítása ide:"
+
+#: app/templates/myorders.html:58
+msgid "Total"
+msgstr "Összesen"
+
+#: app/templates/myorders.html:63
+msgid "Reorder"
+msgstr "Újrarendelés"
