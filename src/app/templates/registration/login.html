@@ -27,8 +27,14 @@
           {{ form.as_p }}
           <button type="submit">{% trans "Login" %}</button>
         </form>
+        <form action="{% url 'signup' %}">
+          <button type="submit">{% trans "Sign Up" %}</button>
+        </form>
         <form action="{% url 'password_reset' %}">
-          <input type="submit" value="Reset password" />
+          <button type="submit">{% trans "Reset password" %}</button>
+        </form>
+        <form action="{% url 'admin:index' %}">
+          <button type="submit">{% trans "Go to Admin" %}</button>
         </form>
       </div>
 	  </main>

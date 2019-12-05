@@ -29,6 +29,9 @@
           {{ profile_form.as_table }}
           <button class="btn" type="submit">{% trans "Update" %}</button>
         </form>
+        <form action="{% url 'password_reset' %}">
+          <button class="btn" type="submit">{% trans "Reset password" %}</button>
+        </form>
       </div>
     </main>
 
