@@ -5,8 +5,7 @@ Forked from: https://github.com/thejungwon/docker-webapp-django
 If you have some migration errors run the following code snippets:
 ```
 ./kill_app.sh
-docker volume list
-docker volume rm container_pgdata
+docker volume rm container_pgdata && rm src/app/migrations/000*
 ```
 
 ## Prerequists
