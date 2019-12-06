@@ -63,7 +63,7 @@
                         <form action='pizzaSearch' method='POST'>{% csrf_token %}
                             <div class="input-group-append">
                                 <input name="search_keyword" type="text" class="form-control"
-                                    placeholder="Search for pizza">
+                                    placeholder='{% trans "Search for pizza" %}'>
                                 <button class="btn btn-outline-secondary" type="submit"
                                     id="button-addon2">{% trans "Search" %}</button>
                             </div>
@@ -141,7 +141,7 @@
                         </div>
                         {% endif %}
                         {% endfor %}
-                        <h4>CUSTOM PIZZAS ABOVE</h4> <!-- You can delete it, just for test to see changes-->
+                        <h4>{% trans "CUSTOM PIZZAS ABOVE" %}</h4> <!-- You can delete it, just for test to see changes-->
                         {% for pizza in pizzas %}
                         {% if pizza.is_custom_pizza %}
                         {% else %}
