@@ -1,3 +1,7 @@
+.text-light a {
+  color: white;
+}
+
 nav.navbar.navbar-expand-lg.navbar-light,
 .footer {
   background-color: #12415D !important;
@@ -52,34 +56,34 @@ button.btn.side-btn.btn-lg.btn-block {
 }
 
 /* DARKER MODE */
-body.darker nav.navbar.navbar-expand-lg.navbar-light,
-body.darker .footer {
+body.blind-body nav.navbar.navbar-expand-lg.navbar-light,
+body.blind-body .footer {
   background-color: #011927 !important;
 }
 
-body.darker .bg-blue,
-body.darker .jumbotron {
+body.blind-body .bg-blue,
+body.blind-body .jumbotron {
   background-color: #0F496C;
 }
 
-body.darker main {
+body.blind-body main {
   background-color: #04314D;
 }
 
-body.darker button,
-body.darker .btn,
-body.darker input[type=submit],
-body.darker button[type=submit] {
+body.blind-body button,
+body.blind-body .btn,
+body.blind-body input[type=submit],
+body.blind-body button[type=submit] {
   background-color: #02253A;
 }
 
-body.darker button:hover,
-body.darker .btn:hover,
-body.darker input[type=submit]:hover,
-body.darker button[type=submit]:hover {
+body.blind-body button:hover,
+body.blind-body .btn:hover,
+body.blind-body input[type=submit]:hover,
+body.blind-body button[type=submit]:hover {
   background-color: #02253A;
 }
 
-body.darker .blue-card.card {
+body.blind-body .blue-card.card {
   background: #31698B;
 }
