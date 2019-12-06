@@ -1,5 +1,20 @@
 {% load i18n %}
 
+<header>
+    <link rel="stylesheet" href="../../static/css/accessibility.css">
+    <script>
+        window.onload= function () {
+            var element = document.body;
+            var contrastMode = getCookie("contrastMode");
+            if(contrastMode !== "true"){
+                element.classList.remove("blind-body");
+            }else{
+                element.classList.add("blind-body");
+            }
+        }
+    </script>
+</header>
+
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFF8DC">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,16 +34,16 @@
                 <li class="navbar-brand">
                     <a class="nav-link {{ myorders_page }}" href="{% url 'myorders' %}">My orders </a>
                 </li>
-                <li class="navbar-brand"> 
+                <li class="navbar-brand">
                     <a class="nav-link {{ resetpw_page }}" href="{% url 'password_reset' %}" >Reset password</a>
-                </li>   
-                <li class="navbar-brand">   
+                </li>
+                <li class="navbar-brand">
                     <a class="nav-link" href="{% url 'logout' %}" >Log out</a>
                 </li>
             {% else %}
                 <li class="navbar-brand">
                     <a class="nav-link {{ signup_page }}" href="{% url 'signup' %}">Sign up</a>
-                </li>  
+                </li>
                 <li class="navbar-brand">
                     <a class="nav-link {{ login_page }}" href="{% url 'login' %}">Log in</a>
                 </li>
@@ -49,8 +64,12 @@
                 </div>
             </li>
         </ul>
-            
         <ul class="nav navbar-nav navbar-right">
+
+            <li class=navbar-brand">
+                    <img type="image" class="accessiblity_logo" onclick="myFunction()" src="../../../media/accessibility/accessibility_logo.png" height="26"
+                         width="26" alt="Akadálymentes"/>
+            </li>
             {{ MEDIA_ROOT }}
             {% get_current_language as LANGUAGE_CODE %}
             <li class="navbar-brand">
@@ -79,3 +98,26 @@
         </ul>
     </div>
 </nav>
+
+<script>
+    function getCookie(name) {
+        var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return v ? v[2] : null;
+    }
+    function setCookie(name, value, days) {
+        var d = new Date;
+        d.setTime(d.getTime() + 24*60*60*1000*days);
+        document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+    }
+    function myFunction() {
+        var element = document.body;
+        var contrastMode = getCookie("contrastMode");
+        if(contrastMode !== "true"){
+            element.classList.add("blind-body");
+            setCookie("contrastMode","true",0.15);
+        }else{
+            element.classList.remove("blind-body");
+            setCookie("contrastMode","false",0.15);
+        }
+    }
+</script>
