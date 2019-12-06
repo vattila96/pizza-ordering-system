@@ -100,9 +100,9 @@
                         {% for pizza in pizzas %}
                         {% if pizza.is_custom_pizza %}
 
-                        <div class="card mb-3 text-light center">
+                        <div class="blue-card card mb-3 text-light center">
                             <div class="row no-gutters">
-                                <div class="col-md-2">
+                                <div class="col-md-2 img-center">
                                     <!--<img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">-->
                                 </div>
                                 <div class="col-md-10">
@@ -143,9 +143,9 @@
                         {% for pizza in pizzas %}
                         {% if pizza.is_custom_pizza %}
                         {% else %}
-                        <div class="card mb-3 text-light center">
+                        <div class="card blue-card mb-3 text-light center">
                             <div class="row no-gutters">
-                                <div class="col-md-2">
+                                <div class="col-md-2 img-center">
                                     {% if pizza.image %}
                                         <img src="{{ pizza.image.url }}" class="card-img" alt="...">
                                     {%  else %}
@@ -153,7 +153,7 @@
                                     {% endif %}
                                 </div>
                                 <div class="col-md-10">
-                                    <div class="card-body pizza-body">
+                                    <div class="card-body blue-card pizza-body">
                                         <h5 class="card-title">{{ pizza.name }}</h5>
                                         <p class="card-text">{{ pizza.size }}</p>
                                         <p class="card-text">{{ pizza.description }}</p>

@@ -8,9 +8,18 @@ a.nav-link {
   color: white !important;
 }
 
+.modal .nav.nav-tabs .nav-item.nav-link {
+  color: #495057 !important;
+}
+
 .bg-blue,
 .jumbotron {
   background-color: #598cab;
+}
+
+.img-center {
+  align-items: center;
+  display: flex;
 }
 
 main {
@@ -38,7 +47,7 @@ button.btn.side-btn.btn-lg.btn-block {
   width: -webkit-fill-available;
 }
 
-.blue-card.card.shopping-cart {
+.blue-card.card {
   background: #31698B;
 }
 
@@ -71,6 +80,6 @@ body.darker button[type=submit]:hover {
   background-color: #02253A;
 }
 
-body.darker .blue-card.card.shopping-cart {
+body.darker .blue-card.card {
   background: #31698B;
 }
