@@ -1,10 +1,12 @@
+{% load i18n %}
+
 <!-- SHOPPING CART MODAL -->
 <div class="modal fade" id="shopping-cart-modal" tabindex="-1" role="dialog"
      aria-labelledby="Shopping Cart" aria-hidden="true">
      <div class="modal-dialog shopping-cart-modal" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="shopping-cart">Shopping Cart</h5>
+                <h5 class="modal-title" id="shopping-cart">{% trans "Shopping Cart" %}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -41,7 +43,7 @@
                     <div class="card shopping-cart">
                         <div class="card-body">
                             <p class="card-text">0 huf</p>
-                            <a href="#" class="btn btn-secondary center">Pay</a>
+                            <a href="#" class="btn btn-secondary center">{% trans "Pay" %}</a>
                         </div>
                     </div>
                 </div>
