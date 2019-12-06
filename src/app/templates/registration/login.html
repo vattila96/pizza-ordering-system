@@ -9,30 +9,30 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-	<link rel="stylesheet" href="{% static 'css/login.css' %}" >
+	  <link rel="stylesheet" href="{% static 'css/login.css' %}" >
     <link rel="stylesheet" href="{% static 'css/album.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
     <title>Pizza - Login</title>
   </head>
   <body>
 
     {% include 'layouts/navbar.html' %}
 
-    <main role="main">
-        
-	    <h2>Login</h2>
-		<form method="post">
-		  {% csrf_token %} <!-- To prevent CSRF Attack. Do NOT delete it-->
-		  {{ form.as_p }}
-		  <button type="submit">Login</button>
-		</form>
-		<form action="{% url 'password_reset' %}">
-		  <input type="submit" value="Reset password" />
-		</form>
+    <main role="main"> 
+      <div class="container bg-blue text-light">
+        <h2>Login</h2>
+        <form method="post">
+          {% csrf_token %} <!-- To prevent CSRF Attack. Do NOT delete it-->
+          {{ form.as_p }}
+          <button type="submit">Login</button>
+        </form>
+        <form action="{% url 'password_reset' %}">
+          <input type="submit" value="Reset password" />
+        </form>
+      </div>
+	  </main>
 
-	</main>
-
-	    <footer class="text-muted">
+    <footer class="text-muted">
         {% include 'layouts/footer.html' %}
     </footer>
 

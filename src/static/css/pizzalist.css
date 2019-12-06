@@ -4,8 +4,7 @@
 }
 
 /*Side menu elements*/
-.side-btn{
-    background-color: var(--main-btn-bg-color);
+.side-btn {
     height: 3rem;
 }
 .side-menu{
@@ -27,9 +26,6 @@
     margin: auto;
 }
 /*Allergens filter*/
-.checkbox-filter{
-    color: black;
-}
 .allergens {
     display: inline-block;
 }
@@ -45,9 +41,6 @@
     font-size: x-large;
 }
 /*Pizzas*/
-.container-background{
-    /*background-color: var(--main-bg-color);*/
-}
 .row{
     max-width: 100%;
 }

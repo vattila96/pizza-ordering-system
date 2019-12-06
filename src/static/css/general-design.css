@@ -1,0 +1,89 @@
+.text-light a {
+  color: white;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light,
+.footer {
+  background-color: #12415D !important;
+  color: white !important;
+}
+
+a.nav-link {
+  color: white !important;
+}
+
+.modal .nav.nav-tabs .nav-item.nav-link {
+  color: #495057 !important;
+}
+
+.bg-blue,
+.jumbotron {
+  background-color: #598cab;
+}
+
+.img-center {
+  align-items: center;
+  display: flex;
+}
+
+main {
+  background-color: #255E80;
+}
+
+button,
+.btn,
+input[type=submit],
+button[type=submit] {
+  background-color: #1C506E;
+  color: white;
+}
+
+button:hover,
+.btn:hover,
+input[type=submit]:hover,
+button[type=submit]:hover {
+  background-color: #255E80;
+  color: white;
+}
+
+button.btn.side-btn.btn-lg.btn-block {
+  margin: 10px 5px;
+  width: -webkit-fill-available;
+}
+
+.blue-card.card {
+  background: #31698B;
+}
+
+/* DARKER MODE */
+body.blind-body nav.navbar.navbar-expand-lg.navbar-light,
+body.blind-body .footer {
+  background-color: #011927 !important;
+}
+
+body.blind-body .bg-blue,
+body.blind-body .jumbotron {
+  background-color: #0F496C;
+}
+
+body.blind-body main {
+  background-color: #04314D;
+}
+
+body.blind-body button,
+body.blind-body .btn,
+body.blind-body input[type=submit],
+body.blind-body button[type=submit] {
+  background-color: #02253A;
+}
+
+body.blind-body button:hover,
+body.blind-body .btn:hover,
+body.blind-body input[type=submit]:hover,
+body.blind-body button[type=submit]:hover {
+  background-color: #02253A;
+}
+
+body.blind-body .blue-card.card {
+  background: #31698B;
+}

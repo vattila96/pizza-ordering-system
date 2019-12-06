@@ -12,21 +12,22 @@
 
 		<link rel="stylesheet" href="{% static 'css/album.css' %}" >
 		<link rel="stylesheet" href="{% static 'css/map.css' %}" >
+		<link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
 		<title>Pizza - Home</title>
 	</head>
 	<body>
 		{% include 'layouts/navbar.html' %}
 		
 	<main role="main">
-		<div class="text-center rounded mb-12">
-			{% if home_page_detail.main_image %}
-				<img class="img-fluid rounded" src="{{ home_page_detail.main_image.url }}" alt="Főoldal kép"/>
-			{% else %}
-				<img class="img-fluid rounded" src="/media/main_pizza.jpg" alt="Főoldal kép"/>
-			{% endif %}			
-		</div>
-		<div class="container bg-dark text-light border rounded mb-12 mt-4">
-			<div class="row mb-3 mt-3 ml-1">
+		<div class="container bg-blue text-light">
+			<div class="row">
+				{% if home_page_detail.main_image %}
+					<img class="img-fluid" src="{{ home_page_detail.main_image.url }}" alt="Főoldal kép"/>
+				{% else %}
+					<img class="img-fluid" src="/media/main_pizza.jpg" alt="Főoldal kép"/>
+				{% endif %}			
+			</div>
+			<div class="row pb-3 mt-3 ml-1">
 				<div class="col-6">
 					<div class="row"><h3>Pizzériánkról</h3></div>
 						{% if home_page_detail.main_image %}
@@ -60,7 +61,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row mb-3 mt-3 ml-1">
+			<div class="row pb-3 mt-3 ml-1">
 				<div class="rounded row col-12">
 					<div class="col-3 text-left">
 						<span class="badge badge-pill badge-success">Akciós</span>					
