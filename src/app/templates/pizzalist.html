@@ -43,19 +43,6 @@
                             </div>
                         </form>
                     {% endfor %}
-
-                    
-                    <div class="card shopping-cart">
-                        <div class="card-body">
-                            <h5 class="card-title">Total:</h5>
-                            <p class="card-text">0 huf</p>
-                            {% include 'shoppingcart.html' %}
-                            <button data-toggle="modal" data-target="#shopping-cart-modal" type="button"
-                                class="btn btn-secondary">Check Cart
-                            </button>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="col">
                     <div class="input-group mb-3 corner">
@@ -88,56 +75,56 @@
                         <label class="allergene-label">allergene1:<input type="checkbox" name="vehicle1"
                                                                          value="allergene1"></label> -->
                         </div>
-
-                    </div>
-                    <div class="pizza-list">
-                        <div class="mb-3 pizza-card center">
-                            <div class=" w-25">
-                                <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
-                                    type="button" class="btn btn-secondary">Create custom pizza
-                                </button>
-                            </div>
+                </div>
+                <div class="pizza-list">
+                    <div class="mb-3 pizza-card center">
+                        <div class=" w-25">
+                            <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
+                                    type="button" class="btn btn-secondary" id="create_custom">Create custom pizza
+                            </button>
                         </div>
                         {% for pizza in pizzas %}
                         {% if pizza.is_custom_pizza %}
-
-                        <div class="card mb-3 bg-dark text-light pizza-card center">
-                            <div class="row no-gutters">
-                                <div class="col-md-2">
-                                    <!--<img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">-->
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="card-body pizza-body">
-                                        <h5 class="card-title">{{ pizza.name }}</h5>
-                                        <p class="card-text">{{ pizza.description }}</p>
-                                        <p class="card-text payment-row">
-                                            <span>{{ pizza.category }}</span><br>
-                                            <span>{{ pizza.price }} HUF</span>
-                                            {% if user.is_authenticated %}
-                                            <span class="float-right mr-4 mb-2">
-                                                <button class="btn btn-secondary"
-                                                    style="background-color: green">Buy</button></span>
-                                            <span class="float-right">
-                                                <button data-toggle="modal" data-target="#customize-pizza-modal"
-                                                    type="button" class="btn btn-secondary"
-                                                    style="background-color: green">Edit</button></span>
-                                            {% else %}
-                                            <span class="float-right mr-4 mb-2">
-                                                <button
-                                                    title="You need to be logged in to add items to the shopping cart"
-                                                    class="btn btn-secondary" style="background-color: gray"
-                                                    disabled>Buy</button></span>
-                                            <span class="float-right">
-                                                <button data-toggle="modal" data-target="#customize-pizza-modal"
-                                                    title="You need to be logged in to edit pizzas" type="button"
-                                                    class="btn btn-secondary" style="background-color: gray"
-                                                    disabled>Edit</button></span>
-                                            {% endif %}
-                                        </p>
+                            <div class="card mb-3 bg-dark text-light pizza-card center">
+                                <div class="row no-gutters">
+                                    <div class="col-md-12">
+                                        <div class="card-body pizza-body">
+                                            <h5 class="card-title">{{ pizza.name }}</h5>
+                                            <p class="card-text">{{ pizza.size }}cm</p>
+                                            <p class="card-text">{{ pizza.description }}</p>
+                                            <p class="card-text payment-row">
+                                                <span>{{ pizza.price }} HUF</span>
+                                                {% if user.is_authenticated %}
+                                                <form action="{% url "cart_add" pizza.id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <span class="float-right mr-4 mb-2">
+                                                        <input type="submit" class="btn btn-secondary" style="background-color: green" value="Add to cart">
+                                                    </span>
+                                                    <span class="float-right mr-4 mb-2">
+                                                        <button data-toggle="modal" data-target="#customize-pizza-modal"
+                                                            type="button" class="btn btn-secondary"
+                                                            style="background-color: green">Edit
+                                                        </button>
+                                                    </span>
+                                                 </form>
+                                                {% else %}
+                                                <span class="float-right mr-4 mb-2">
+                                                        <button title="You need to be logged in to add items to the shopping cart"
+                                                                class="btn btn-secondary"
+                                                                style="background-color: gray"
+                                                                disabled>Add to cart</button></span>
+                                                    <span class="float-right">
+                                                        <button data-toggle="modal" data-target="#customize-pizza-modal"
+                                                                title="You need to be logged in to edit pizzas"
+                                                                type="button" class="btn btn-secondary"
+                                                                style="background-color: gray"
+                                                                disabled>Edit</button></span>
+                                                {% endif %}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         {% endif %}
                         {% endfor %}
                         <h4>CUSTOM PIZZAS ABOVE</h4> <!-- You can delete it, just for test to see changes-->
@@ -162,17 +149,26 @@
                                                 <span>{{ pizza.category }}</span><br>
                                                 <span>{{ pizza.price }} HUF</span>
                                                 {% if user.is_authenticated %}
-                                                <span class="float-right mr-4 mb-2">
-                                                    <button class="btn btn-secondary"
-                                                            style="background-color: green">Buy</button></span>
-                                                <span class="float-right">
+                                                    <form action="{% url "cart_add" pizza.id %}" method="post">
+                                                        {% csrf_token %}
+                                                        <span class="float-right mr-4 mb-2">
+                                                            <input type="submit" class="btn btn-secondary" style="background-color: green" value="Add to cart">
+                                                        </span>
+                                                    </form>
                                                 {% else %}
-                                                <span class="float-right mr-4 mb-2">
-                                                    <button title="You need to be logged in to add items to the shopping cart"
-                                                            class="btn btn-secondary"
-                                                            style="background-color: gray"
-                                                            disabled>Buy</button></span>
-                                                <span class="float-right">     
+                                                  <span class="float-right mr-4 mb-2">
+                                                          <button title="You need to be logged in to add items to the shopping cart"
+                                                                  class="btn btn-secondary"
+                                                                  style="background-color: gray"
+                                                                  disabled>Add to cart</button>
+                                                  </span>
+                                                  <span class="float-right">
+                                                          <button data-toggle="modal" data-target="#customize-pizza-modal"
+                                                                  title="You need to be logged in to edit pizzas"
+                                                                  type="button" class="btn btn-secondary"
+                                                                  style="background-color: gray"
+                                                                  disabled>Edit</button>
+                                                  </span>
                                                 {% endif %}
                                             </p>
                                         </div>
@@ -479,32 +475,37 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4 right-col">
-                            <div class="row">
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza" />
-                                </div>
-                                <div class="col-7">
-                                    <p><b>Price:</b> 8$</p>
-                                    <p>
-                                        Toppings:
-                                    </p>
-                                    <ul>
-                                        <li>mushroom x2 - 0.8$</li>
-                                        <li>mushroom x2 - 0.8$</li>
-                                        <li>mushroom x2 - 0.8$</li>
-                                        <li>...</li>
-                                    </ul>
-                                </div>
+                    </div>
+                    <div class="col-4 right-col">
+                        <div class="row">
+                            <div class="col-5">
+                                <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza"/>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="d-flex flex-row justify-content-end pt-4">
-                                        <button type="submit" class="btn btn-primary float-right">Add to cart</button>
-                                    </div>
-                                </div>
+                            <div class="col-7">
+                                <p><b>Price:</b> $8</p>
+                                <p>
+                                    Toppings:
+                                </p>
+                                <ul>
+                                    <li>mushroom x2 - 0.8$</li>
+                                    <li>mushroom x2 - 0.8$</li>
+                                    <li>mushroom x2 - 0.8$</li>
+                                    <li>...</li>
+                                </ul>
                             </div>
                         </div>
+                        <!--div class="row">
+                            <div class="col-12">
+                                <div class="d-flex flex-row justify-content-end pt-4">
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <span class="float-right mr-4 mb-2">
+                                            <input type="submit" class="btn btn-primary" value="Add to cart">
+                                        </span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div-->
                         <hr/>
                         <div class="row">
                             <div class="col-12">
@@ -545,6 +546,36 @@
                 <div class="row">       
                     <div class="col-4 right-col">
                         <div class="row">
+                            <div class="col-5">
+                                <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza"/>
+                            </div>
+                            <div class="col-7">
+                                <p><b>Price:</b> $<span class="pizza_price"></span></p>
+                                <p>
+                                    Toppings:
+                                </p>
+                                <ul>
+                                    <li>mushroom x2 - 0.8$</li>
+                                    <li>mushroom x2 - 0.8$</li>
+                                    <li>mushroom x2 - 0.8$</li>
+                                    <li>...</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--div class="row">
+                            <div class="col-12">
+                                <div class="d-flex flex-row justify-content-end pt-4">
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <span class="float-right mr-4 mb-2">
+                                            <input type="submit" class="btn btn-primary" value="Add to cart">
+                                        </span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div-->
+                        <hr/>
+                        <div class="row">
                             <div class="col-12">
                                 <form action="" method="POST">{% csrf_token %}
                                     <form>
@@ -553,6 +584,10 @@
                                             <input name="custompizza_name" type="text" class="form-control" id="name" aria-describedby="namehelp"
                                                     placeholder="Name">
                                             <small id="namehelp" class="form-text text-muted">The name of your custom pizza.</small>
+                                            
+                                            <label for="price">Price:</label>
+                                            $<span class="pizza_price"></span>
+                                            <input name="custompizza_price" type="hidden" class="form-control pizza_price_form" id="price" value="">
                                         </div>
                                         <div class="d-flex flex-row justify-content-end">
                                             <button type="submit" data_dismiss="modal" class="btn btn-primary float-right">Create pizza</button>
@@ -581,3 +616,13 @@
 </body>
 
 </html>
+
+<script>
+$(document).ready(function(){
+    $("#create_custom").click(function(){
+        let rand = Math.floor((Math.random() * 25) + 1);
+        $(".pizza_price").html(rand);
+        $(".pizza_price_form").val(rand);
+    });
+});
+</script>

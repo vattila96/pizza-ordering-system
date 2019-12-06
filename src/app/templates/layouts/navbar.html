@@ -64,7 +64,6 @@
                 </div>
             </li>
         </ul>
-
         <ul class="nav navbar-nav navbar-right">
 
             <li class=navbar-brand">
@@ -73,6 +72,9 @@
             </li>
             {{ MEDIA_ROOT }}
             {% get_current_language as LANGUAGE_CODE %}
+            <li class="navbar-brand">
+                <a href="{% url "shoppingcart" %}" ><img src="{{ MEDIA_URL }}/cart.png" height="44" width="44"/></a>
+            </li>
             <li class="navbar-brand">
                 <img src="{{ MEDIA_URL }}/language_flags/{{ LANGUAGE_CODE }}.png" />
             </li>
