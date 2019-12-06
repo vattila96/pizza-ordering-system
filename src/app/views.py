@@ -1,22 +1,54 @@
 import datetime
 import base64
 import requests
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 from django.utils.translation import gettext as _
 from .models import *
 from .domain.models import *
-from django.contrib.auth.decorators import login_required
+from django import forms
+from django.views.decorators.http import require_POST
+from .cart import Cart
 from django.db import transaction
 from .forms import *
+
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 30)]
+
+class CartAddProductForm(forms.Form):
+    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
+    update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
+
+@require_POST
+def cart_add(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Pizza, id=product_id)
+    form = CartAddProductForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
+    else:
+      cart.add(product=product, quantity=1)
+    return redirect('shoppingcart')
+
+def cart_remove(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Pizza, id=product_id)
+    cart.remove(product)
+    return redirect('shoppingcart')
+
+def cart_detail(request):
+    cart = Cart(request)
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+    return render(request, 'shoppingcart.html', {'cart': cart})
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
-
 
 def index(request):
     home_page_detail = HomePageDetail.objects.last()
@@ -51,7 +83,8 @@ def pizzalist(request):
     if request.method == 'POST':
         keyword = request.POST.get("custompizza_name", None)
         if keyword != "":
-          Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True).save()
+          pizza_price = request.POST.get("custompizza_price", None)
+          Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True, price=pizza_price).save()
 
     pizzas = Pizza.objects.all().order_by('-name')
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
