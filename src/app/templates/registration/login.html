@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -12,7 +13,7 @@
 
 	<link rel="stylesheet" href="{% static 'css/login.css' %}" >
     <link rel="stylesheet" href="{% static 'css/album.css' %}" >
-    <title>Pizza - Login</title>
+    <title>{% trans "Pizza - Login" %}</title>
   </head>
   <body>
 
@@ -20,14 +21,14 @@
 
     <main role="main">
         
-	    <h2>Login</h2>
+	    <h2>{% trans "Login" %}</h2>
 		<form method="post">
 		  {% csrf_token %} <!-- To prevent CSRF Attack. Do NOT delete it-->
 		  {{ form.as_p }}
-		  <button type="submit">Login</button>
+		  <button type="submit">{% trans "Login" %}</button>
 		</form>
 		<form action="{% url 'password_reset' %}">
-		  <input type="submit" value="Reset password" />
+		  <input type="submit" value='{% trans "Reset password" %}' />
 		</form>
 
 	</main>

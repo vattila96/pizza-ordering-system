@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -28,24 +29,17 @@
 		<div class="container bg-dark text-light border rounded mb-12 mt-4">
 			<div class="row mb-3 mt-3 ml-1">
 				<div class="col-6">
-					<div class="row"><h3>Pizzériánkról</h3></div>
+					<div class="row"><h3>{% trans "Our pizzeria" %}</h3></div>
 						{% if home_page_detail.main_image %}
 							<p>
 								{{ home_page_detail.description_text }}
 							</p>
 						{% else %}
-							<p>
-								A pizza olasz eredetű étel, ami mára az egész világon elterjedt. <br>
-								Alapja egy kelt tésztából készült vékony lepénykenyér, melyet paradicsom vagy tejföl alapú szósszal borítanak,  <br>
-								és erre különféle feltétek kerülnek, (a leggyakoribbak a különféle zöldségek, gomba és felvágottak),  <br>
-								a tésztát végül reszelt sajttal szórják meg és sütőben megsütik.  <br>
-								Jellegzetes fűszerei közé tartozik az oregánó és a pepperoni.  <br>
-								Az eredeti olasz pizzára szeletelt mozzarellát, bazsalikomot és olíva olajat tesznek, erre kerülhet további feltét.
-							</p>
+							<p>{% trans "Our pizzeria's description." %}</p>
 						{% endif %}	
 				</div>
 				<div class="col-6">
-					<div class="row"><h3>Térkép</h3></div>
+					<div class="row"><h3>{% trans "Map" %}</h3></div>
 					<div class="row">
 						<div class="mapouter">
 							<div class="gmap_canvas">
@@ -63,7 +57,7 @@
 			<div class="row mb-3 mt-3 ml-1">
 				<div class="rounded row col-12">
 					<div class="col-3 text-left">
-						<span class="badge badge-pill badge-success">Akciós</span>					
+						<span class="badge badge-pill badge-success">{% trans "On sale" %}</span>					
 							{% if home_page_detail.main_image %}
 								<img src="{{ home_page_detail.on_sale_pizza_1.url }}" class="card-img" alt="...">
 							{% else %}
@@ -71,7 +65,7 @@
 							{% endif %}	
 					</div>
 					<div class="col-3 text-left">
-						<span class="badge badge-pill badge-success">Akciós</span>						
+						<span class="badge badge-pill badge-success">{% trans "On sale" %}</span>						
 							{% if home_page_detail.main_image %}
 								<img src="{{ home_page_detail.on_sale_pizza_2.url }}" class="card-img" alt="...">
 							{% else %}
@@ -79,7 +73,7 @@
 							{% endif %}							
 					</div>
 					<div class="col-3 text-right">
-						<span class="badge badge-pill badge-info">Ajánlott</span>					
+						<span class="badge badge-pill badge-info">{% trans "Recommended" %}</span>					
 							{% if home_page_detail.main_image %}
 								<img src="{{ home_page_detail.recommended_pizza_1.url }}" class="card-img" alt="...">
 							{% else %}
@@ -87,7 +81,7 @@
 							{% endif %}							
 					</div>
 					<div class="col-3 text-right">
-						<span class="badge badge-pill badge-info">Ajánlott</span>					
+						<span class="badge badge-pill badge-info">{% trans "Recommended" %}</span>					
 							{% if home_page_detail.main_image %}
 								<img src="{{ home_page_detail.recommended_pizza_2.url }}" class="card-img" alt="...">
 							{% else %}

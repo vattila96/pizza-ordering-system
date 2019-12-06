@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -12,7 +13,7 @@
 
     <link rel="stylesheet" href="{% static 'css/album.css' %}" >
 	
-	<title>Pizza - My shopping cart</title>
+	<title>{% trans "Pizza - My shopping cart" %}</title>
 	
 </head>
 <body>
@@ -20,16 +21,16 @@
 {% block content %}
     <div class="container">
         <div class="row" style="margin-top: 6%">
-        <h2>Your Shopping Cart
+        <h2>{% trans "Your Shopping Cart" %}
         </h2>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Remove</th>
-                        <th>Unit Price</th>
-                        <th>Price</th>
+                        <th>{% trans "Product" %}</th>
+                        <th>{% trans "Quantity" %}</th>
+                        <th>{% trans "Remove" %}</th>
+                        <th>{% trans "Unit Price" %}</th>
+                        <th>{% trans "Price" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +47,7 @@
                                 </form>
                             </td>
                             <td>
-                                <a href="{% url "cart_remove" product.id %}">Remove</a>
+                                <a href="{% url "cart_remove" product.id %}">{% trans "Remove" %}</a>
                             </td>
                             <td>{{ item.price }} HUF</td>
                             <td>{{ item.total_price }} HUF</td>
@@ -61,8 +62,8 @@
                 </tbody>
             </table>
         <p class="text-right">
-            <a href="{% url "pizzalist" %}" class="btn btn-secondary">Continue Shopping</a>
-            <a href="https://stripe-payments-demo.appspot.com/" class="btn btn-primary">Checkout</a>
+            <a href="{% url "pizzalist" %}" class="btn btn-secondary">{% trans "Continue Shopping" %}</a>
+            <a href="https://stripe-payments-demo.appspot.com/" class="btn btn-primary">{% trans "Checkout" %}</a>
         </p>
         </div>
     </div>
