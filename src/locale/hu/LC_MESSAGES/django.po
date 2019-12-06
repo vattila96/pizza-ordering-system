@@ -81,6 +81,7 @@ msgid "My orders"
 msgstr "Rendeléseim"
 
 #: app/templates/layout/navbar.html:23
+#: app/templates/registration/login.html:31
 msgid "Reset password"
 msgstr "Jelszó visszaállítása"
 
@@ -115,3 +116,64 @@ msgstr "Lájkolj Facebookon"
 #: app/templates/layout/navbar.html:48
 msgid "Email me"
 msgstr "Email küldés"
+
+#: app/templates/registration/login.html:16
+msgid "Pizza - Login"
+msgstr "Pizza - Bejelentkezés"
+
+#: app/templates/registration/login.html:24
+#: app/templates/registration/login.html:28
+msgid "Login"
+msgstr "Bejelentkezés"
+
+#: app/templates/registration/password_reset_complete.html:15
+msgid "Pizza - Password reset complete!"
+msgstr "Pizza - Jelszó visszaállítása sikeres!"
+
+#: app/templates/registration/password_reset_complete.html:23
+msgid "Password reset complete"
+msgstr "Jelszó visszaállítása sikeres"
+
+#: app/templates/registration/password_reset_confirm.html:16
+msgid "Pizza - Confirm password reset!"
+msgstr "Pizza - Jelszó visszaállítás megerősítése!"
+
+#: app/templates/registration/password_reset_confirm.html:28
+msgid "Set a new password!"
+msgstr "Állítsál be új jelszót!"
+
+#: app/templates/registration/password_reset_confirm.html:37
+msgid "The password reset link was invalid, possibly because it has already been used."
+msgstr "A jelszó visszaállító link nem működik, valószínűleg már használták."
+
+#: app/templates/registration/password_reset_confirm.html:38
+msgid "Please request a new password reset!"
+msgstr "Kérlek csinálj egy új jelszó visszaállítást!"
+
+#: app/templates/registration/password_reset_done.html:16
+msgid "Pizza - Password reset is done!"
+msgstr "Pizza - Jelszó visszaállítás végrehajtva!"
+
+#: app/templates/registration/password_reset_done.html:24
+msgid "Check your inbox."
+msgstr "Nézd meg a postaládád."
+
+#: app/templates/registration/password_reset_done.html:25
+msgid "We've emailed you instructions for setting your password. You should receive the email shortly!"
+msgstr "Küldtünk egy e-mail, a további teendőkért hogy beállítsad a jelszavad. Hamarosan meg kell érkeznie!"
+
+#: app/templates/registration/password_reset_form.html:15
+msgid "Pizza - Password reset"
+msgstr "Pizza - Jelszó visszaállítás"
+
+#: app/templates/registration/password_reset_form.html:23
+msgid "Forgot your password?"
+msgstr "Elfelejtetted a jelszavad?"
+
+#: app/templates/registration/password_reset_form.html:24
+msgid "Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Írd be az e-mail címed, és mi küldünk egy levelet a további instrukciókért, hogy beállíts egy új jelszót."
+
+#: app/templates/registration/password_reset_form.html:30
+msgid "Send me instructions!"
+msgstr "Küldjétek az email-t!"
