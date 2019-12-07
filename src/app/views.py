@@ -105,7 +105,7 @@ def categoryfilter(request):
 def pizzasearch(request):
     keyword = request.POST.get("search_keyword", None)
 
-    allergen_list = request.POST.getlist("allergenes")
+    allergen_list = request.POST.getlist("allergens")
 
     allergen_correct_pizzas = Pizza.objects.all().order_by('-name')
 

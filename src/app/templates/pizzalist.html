@@ -48,8 +48,8 @@
                     <div class="input-group mt-3 justify-content-end">
                         <form action='pizzaSearch' method='POST'>{% csrf_token %}
                             <div class="input-group-append">
-                                <input type="checkbox" value="milk" name="allergenes"> Milk
-                                <input type="checkbox" value="peanuts" name="allergenes"> Peanuts
+                                <input type="checkbox" value="milk" name="allergens"> Milk
+                                <input type="checkbox" value="peanuts" name="allergens"> Peanuts
                                 <input name="search_keyword" type="text" class="form-control"
                                     placeholder="Search for pizza">
                                 <button class="btn" type="submit"
