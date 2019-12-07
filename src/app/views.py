@@ -109,11 +109,22 @@ def pizzasearch(request):
 
     allergen_correct_pizzas = Pizza.objects.all().order_by('-name')
 
+    # Todo change hard-coded allergens to a new Class in the DB
     if "milk" in allergen_list:
         allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_milk=False)
     
     if "peanuts" in allergen_list:
         allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_peanuts=False)
+    
+    if "gluten" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_gluten=False)
+    
+    if "fish" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_fish=False)
+    
+    if "wheat" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_wheat=False)
+    
 
     name_contains = allergen_correct_pizzas.filter(name__icontains=keyword)
     description_contains = allergen_correct_pizzas.filter(description__icontains=keyword)

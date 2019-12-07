@@ -48,8 +48,13 @@
                     <div class="input-group mt-3 justify-content-end">
                         <form action='pizzaSearch' method='POST'>{% csrf_token %}
                             <div class="input-group-append">
-                                <input type="checkbox" value="milk" name="allergens"> Milk
-                                <input type="checkbox" value="peanuts" name="allergens"> Peanuts
+                                {% comment %} Todo change hard-coded allergens to a new Class in the DB {% endcomment %}
+                                <div class="allergens allergene-title">Allergens to exclude:</div>
+                                <label class="allergene-label"><input type="checkbox" value="milk" name="allergens">Milk</label>
+                                <label class="allergene-label"><input type="checkbox" value="peanuts" name="allergens">Peanuts</label>
+                                <label class="allergene-label"><input type="checkbox" value="gluten" name="allergens">Gluten</label>
+                                <label class="allergene-label"><input type="checkbox" value="fish" name="allergens">Fish</label>
+                                <label class="allergene-label"><input type="checkbox" value="wheat" name="allergens">Wheat</label>
                                 <input name="search_keyword" type="text" class="form-control"
                                     placeholder="Search for pizza">
                                 <button class="btn" type="submit"
