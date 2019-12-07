@@ -104,8 +104,19 @@ def categoryfilter(request):
 
 def pizzasearch(request):
     keyword = request.POST.get("search_keyword", None)
-    name_contains = Pizza.objects.filter(name__icontains=keyword)
-    description_contains = Pizza.objects.filter(description__icontains=keyword)
+
+    allergen_list = request.POST.getlist("allergenes")
+
+    allergen_correct_pizzas = Pizza.objects.all().order_by('-name')
+
+    if "milk" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_milk=False)
+    
+    if "peanuts" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_peanuts=False)
+
+    name_contains = allergen_correct_pizzas.filter(name__icontains=keyword)
+    description_contains = allergen_correct_pizzas.filter(description__icontains=keyword)
     pizzas = (name_contains | description_contains).order_by('-name')
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
