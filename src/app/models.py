@@ -21,6 +21,9 @@ class PizzaCategory(models.Model):
 
 class Pizza(models.Model):
     category = models.ForeignKey(PizzaCategory, on_delete=models.CASCADE)
+
+    contains_milk = models.BooleanField(default=False)
+    contains_peanuts = models.BooleanField(default=False)
     
     name = models.CharField(max_length=100)
     description = models.TextField()
