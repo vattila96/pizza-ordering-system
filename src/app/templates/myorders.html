@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="{% static 'css/album.css' %}" >
     <link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
-	<title>Pizza - My orders</title>
+	<title>%trans "Pizza - My orders:" %}</title>
 	
   </head>
   <body>
@@ -25,7 +25,7 @@
         <h1 class="text-center">{%trans "My previous orders" %}</h1>
         <section class="jumbotron text-center">
           <div class="container text-light border rounded mb-5">
-            {%trans "Futár:" %}
+            {%trans "Food delivery:" %}
               <div class="row center-map">
                   <!--                    src="https://maps.google.com/maps?q=<LONGITUDE>%2C+<LATITUDE>&t=&z=15&ie=UTF8&iwloc=&output=embed"-->
                   <iframe width="500" height="260" id="gmap_canvas" src="https://maps.google.com/maps?q=47.473956%2C+19.061503&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
