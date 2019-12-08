@@ -25,16 +25,16 @@
         <form method="post">
           {% csrf_token %} <!-- To prevent CSRF Attack. Do NOT delete it-->
           {{ form.as_p }}
-          <button type="submit">{% trans "Login" %}</button>
+          <button class="btn" type="submit">{% trans "Login" %}</button>
         </form>
         <form action="{% url 'signup' %}">
-          <button type="submit">{% trans "Sign Up" %}</button>
+          <button class="btn" type="submit">{% trans "Sign Up" %}</button>
         </form>
         <form action="{% url 'password_reset' %}">
-          <button type="submit">{% trans "Reset password" %}</button>
+          <button class="btn" type="submit">{% trans "Reset password" %}</button>
         </form>
         <form action="{% url 'admin:index' %}">
-          <button type="submit">{% trans "Go to Admin" %}</button>
+          <button class="btn" type="submit">{% trans "Go to Admin" %}</button>
         </form>
       </div>
 	  </main>
