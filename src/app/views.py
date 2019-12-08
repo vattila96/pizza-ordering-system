@@ -1,12 +1,14 @@
 import datetime
 import base64
 import requests
+from decimal import Decimal
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 from django.utils.translation import gettext as _
+from django.utils.datastructures import MultiValueDictKeyError
 from .models import *
 from .domain.models import *
 from django import forms
@@ -15,14 +17,20 @@ from .cart import Cart
 from django.db import transaction
 from .forms import *
 
-PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 30)]
+PRODUCT_QUANTITY_CHOICES = [(i/2, str(i/2)) for i in range(1, 40)]
 
 class CartAddProductForm(forms.Form):
-    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
+    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=float)
     update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
 @require_POST
 def cart_add(request, product_id):
+    try:
+      print(request.POST['mixed'])
+      quan = 0.5
+    except MultiValueDictKeyError as er:
+      quan = 1.0
+
     cart = Cart(request)
     product = get_object_or_404(Pizza, id=product_id)
     form = CartAddProductForm(request.POST)
@@ -30,7 +38,7 @@ def cart_add(request, product_id):
         cd = form.cleaned_data
         cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
     else:
-      cart.add(product=product, quantity=1)
+      cart.add(product=product, quantity=quan)
     return redirect('shoppingcart')
 
 def cart_remove(request, product_id):
@@ -43,6 +51,7 @@ def cart_detail(request):
     cart = Cart(request)
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+        #item['quantity'] = int(item['quantity'])
     return render(request, 'shoppingcart.html', {'cart': cart})
 
 class SignUp(generic.CreateView):

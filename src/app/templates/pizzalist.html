@@ -95,8 +95,12 @@
                                                 <form action="{% url "cart_add" pizza.id %}" method="post">
                                                     {% csrf_token %}
                                                     <span class="float-right mr-4 mb-2">
-                                                        <input type="submit" class="btn btn-secondary"
-                                                            style="background-color: green" value="Add to cart">
+
+                                                        <input type="submit" name="regular" class="btn btn-secondary" style="background-color: green" value="Add to cart">
+                                                    </span>
+                                                    <span class="float-right mr-4 mb-2">
+                                                        <input type="submit" name="mixed" class="btn btn-secondary" style="background-color: green" value="Add to cart as half">
+
                                                     </span>
                                                     <span class="float-right mr-4 mb-2">
                                                         <button data-toggle="modal" data-target="#customize-pizza-modal"
@@ -107,15 +111,23 @@
                                                 </form>
                                                 {% else %}
                                                 <span class="float-right mr-4 mb-2">
-                                                    <button
-                                                        title="You need to be logged in to add items to the shopping cart"
-                                                        class="btn btn-secondary" style="background-color: gray"
-                                                        disabled>Add to cart</button></span>
-                                                <span class="float-right">
-                                                    <button data-toggle="modal" data-target="#customize-pizza-modal"
-                                                        title="You need to be logged in to edit pizzas" type="button"
-                                                        class="btn btn-secondary" style="background-color: gray"
-                                                        disabled>Edit</button></span>
+
+                                                        <button title="You need to be logged in to add items to the shopping cart"
+                                                                class="btn btn-secondary"
+                                                                style="background-color: gray"
+                                                                disabled>Add to cart</button></span>
+                                                <span class="float-right mr-4 mb-2">
+                                                        <button title="You need to be logged in to add items to the shopping cart"
+                                                                class="btn btn-secondary"
+                                                                style="background-color: gray"
+                                                                disabled>Add to cart as half</button></span>
+                                                    <span class="float-right">
+                                                        <button data-toggle="modal" data-target="#customize-pizza-modal"
+                                                                title="You need to be logged in to edit pizzas"
+                                                                type="button" class="btn btn-secondary"
+                                                                style="background-color: gray"
+                                                                disabled>Edit</button></span>
+
                                                 {% endif %}
                                             </p>
                                         </div>
@@ -147,26 +159,37 @@
                                                 <span>{{ pizza.category }}</span><br>
                                                 <span>{{ pizza.price }} HUF</span>
                                                 {% if user.is_authenticated %}
-                                                <form action="{% url "cart_add" pizza.id %}" method="post">
-                                                    {% csrf_token %}
-                                                    <span class="float-right mr-4 mb-2">
-                                                        <input type="submit" class="btn btn-secondary"
-                                                            style="background-color: green" value="Add to cart">
-                                                    </span>
-                                                </form>
+
+                                                    <form action="{% url "cart_add" pizza.id %}" method="post">
+                                                        {% csrf_token %}
+                                                        <span class="float-right mr-4 mb-2">
+                                                            <input type="submit" name="regular" class="btn btn-secondary" style="background-color: green" value="Add to cart">
+                                                        </span>
+                                                        <span class="float-right mr-4 mb-2">
+                                                            <input type="submit" name="mixed" class="btn btn-secondary" style="background-color: green" value="Add to cart as half">
+                                                        </span>
+                                                    </form>
                                                 {% else %}
-                                                <span class="float-right mr-4 mb-2">
-                                                    <button
-                                                        title="You need to be logged in to add items to the shopping cart"
-                                                        class="btn btn-secondary" style="background-color: gray"
-                                                        disabled>Add to cart</button>
-                                                </span>
-                                                <span class="float-right">
-                                                    <button data-toggle="modal" data-target="#customize-pizza-modal"
-                                                        title="You need to be logged in to edit pizzas" type="button"
-                                                        class="btn btn-secondary" style="background-color: gray"
-                                                        disabled>Edit</button>
-                                                </span>
+                                                  <span class="float-right mr-4 mb-2">
+                                                          <button title="You need to be logged in to add items to the shopping cart"
+                                                                  class="btn btn-secondary"
+                                                                  style="background-color: gray"
+                                                                  disabled>Add to cart</button>
+                                                  </span>
+                                                  <span class="float-right mr-4 mb-2">
+                                                          <button title="You need to be logged in to add items to the shopping cart"
+                                                                  class="btn btn-secondary"
+                                                                  style="background-color: gray"
+                                                                  disabled>Add to cart as half</button>
+                                                  </span>
+                                                  <span class="float-right">
+                                                          <button data-toggle="modal" data-target="#customize-pizza-modal"
+                                                                  title="You need to be logged in to edit pizzas"
+                                                                  type="button" class="btn btn-secondary"
+                                                                  style="background-color: gray"
+                                                                  disabled>Edit</button>
+                                                  </span>
+
                                                 {% endif %}
                                             </p>
                                         </div>
