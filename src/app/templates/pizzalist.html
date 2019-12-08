@@ -14,6 +14,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../../static/css/pizzalist.css">
     <link rel="stylesheet" href="{% static 'css/album.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -26,10 +27,9 @@
     {% block content %}{% endblock %}
     <main role="main">
         <!--    <h1>Pizzalist</h1>-->
-        <div class="fluid-container container-background">
-
+        <div class="fluid-container bg-blue text-light container-background">
             <div class="row">
-                <div class="col-2 side-menu center-block">
+                <div class="col-2 center-block">
                     <form action='categoryFilter' method='POST'>{% csrf_token %}
                         <div>
                             <button class="btn side-btn btn-lg btn-block" type="submit" name="category"
@@ -46,19 +46,19 @@
                     {% endfor %}
                 </div>
                 <div class="col">
-                    <div class="input-group mb-3 corner">
+                    <div class="input-group mt-3 justify-content-end">
                         <form action='pizzaSearch' method='POST'>{% csrf_token %}
                             <div class="input-group-append">
                                 <input name="search_keyword" type="text" class="form-control"
                                     placeholder='{% trans "Search for pizza" %}'>
-                                <button class="btn btn-outline-secondary" type="submit"
+                                <button class="btn" type="submit"
                                     id="button-addon2">{% trans "Search" %}</button>
                             </div>
                         </form>
 
                         <form action='pizzaReset' method='POST'>{% csrf_token %}
                             <div class="input-group-append">                        
-                                <button name="reset_keyword" class="btn btn-outline-secondary" type="submit" id="button-addon2" style="color: blue"><u>{% trans "Reset" %}</u></button>
+                                <button name="reset_keyword" class="btn" type="submit" id="button-addon2">{% trans "Reset" %}</button>
                             </div>
                         </form>
                     </div>
@@ -81,12 +81,12 @@
                     <div class="mb-3 pizza-card center">
                         <div class=" w-25">
                             <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
-                                    type="button" class="btn btn-secondary" id="create_custom">{% trans "Create custom pizza" %}
+                                    type="button" class="btn" id="create_custom">{% trans "Create custom pizza" %}
                             </button>
                         </div>
                         {% for pizza in pizzas %}
                         {% if pizza.is_custom_pizza %}
-                            <div class="card mb-3 bg-dark text-light pizza-card center">
+                            <div class="card mb-3 blue-card text-light pizza-card center">
                                 <div class="row no-gutters">
                                     <div class="col-md-12">
                                         <div class="card-body pizza-body">
@@ -132,7 +132,7 @@
                         {% for pizza in pizzas %}
                         {% if pizza.is_custom_pizza %}
                         {% else %}
-                            <div class="card mb-3 bg-dark text-light pizza-card center">
+                            <div class="card mb-3 blue-card text-light pizza-card center">
                                 <div class="row no-gutters">
                                     <div class="col-md-2">
                                         {% if pizza.image %}

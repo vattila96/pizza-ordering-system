@@ -12,60 +12,65 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{% static 'css/album.css' %}" >
-	
+	<link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
 	<title>{% trans "Pizza - My shopping cart" %}</title>
 	
 </head>
 <body>
-{% include 'layouts/navbar.html' %}
-{% block content %}
-    <div class="container">
-        <div class="row" style="margin-top: 6%">
-        <h2>{% trans "Your Shopping Cart" %}
-        </h2>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>{% trans "Product" %}</th>
-                        <th>{% trans "Quantity" %}</th>
-                        <th>{% trans "Remove" %}</th>
-                        <th>{% trans "Unit Price" %}</th>
-                        <th>{% trans "Price" %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for item in cart %}
-                    {% with product=item.product  %}
+    {% include 'layouts/navbar.html' %}
+    {% block content %}{% endblock %}
+    <main role="main">
+        <div class="container bg-blue text-light p-4">
+            <div class="row">
+            <h2>{% trans "Your Shopping Cart" %}
+            </h2>
+                <table class="table table-striped table-hover">
+                    <thead>
                         <tr>
-                            <td>{{ product.name }}</td>
-                            <td>
-                                <form action="{% url "cart_add" product.id %}" method="post">
-                                    {% csrf_token %}
-                                    {{ item.update_quantity_form.quantity }}
-                                    {{ item.update_quantity_form.update }}
-                                    <input type="submit" value="Update" class="btn btn-info">
-                                </form>
-                            </td>
-                            <td>
-                                <a href="{% url "cart_remove" product.id %}">{% trans "Remove" %}</a>
-                            </td>
-                            <td>{{ item.price }} HUF</td>
-                            <td>{{ item.total_price }} HUF</td>
+                            <th>{% trans "Product" %}</th>
+                            <th>{% trans "Quantity" %}</th>
+                            <th>{% trans "Remove" %}</th>
+                            <th>{% trans "Unit Price" %}</th>
+                            <th>{% trans "Price" %}</th>
                         </tr>
-                    {% endwith %}
-                {% endfor %}
-                <tr style="background-color: #919191">
-                    <td colspan="3"></td>
-                    <td><b>Total</b></td>
-                    <td colspan="num"><b>{{ cart.get_total_price }} HUF</b></td>
-                </tr>
-                </tbody>
-            </table>
-        <p class="text-right">
-            <a href="{% url "pizzalist" %}" class="btn btn-secondary">{% trans "Continue Shopping" %}</a>
-            <a href="https://stripe-payments-demo.appspot.com/" class="btn btn-primary">{% trans "Checkout" %}</a>
-        </p>
+                    </thead>
+                    <tbody>
+                    {% for item in cart %}
+                        {% with product=item.product  %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>
+                                    <form action="{% url "cart_add" product.id %}" method="post">
+                                        {% csrf_token %}
+                                        {{ item.update_quantity_form.quantity }}
+                                        {{ item.update_quantity_form.update }}
+                                        <input type="submit" value="Update" class="btn">
+                                    </form>
+                                </td>
+                                <td>
+                                    <a href="{% url "cart_remove" product.id %}">{% trans "Remove" %}</a>
+                                </td>
+                                <td>{{ item.price }} HUF</td>
+                                <td>{{ item.total_price }} HUF</td>
+                            </tr>
+                        {% endwith %}
+                    {% endfor %}
+                    <tr style="background-color:  #31698B">
+                        <td colspan="3"></td>
+                        <td><b>Total</b></td>
+                        <td colspan="num"><b>{{ cart.get_total_price }} HUF</b></td>
+                    </tr>
+                    </tbody>
+                </table>
+            <p class="text-right">
+                <a href="{% url "pizzalist" %}" class="btn">{% trans "Continue Shopping" %}</a>
+                <a href="https://stripe-payments-demo.appspot.com/" class="btn">{% trans "Checkout" %}</a>
+            </p>
+            </div>
         </div>
-    </div>
-   
-{% endblock %}
+    </main>
+    <footer class="text-muted">
+        {% include 'layouts/footer.html' %}
+    </footer>
+</body>
+</html>
