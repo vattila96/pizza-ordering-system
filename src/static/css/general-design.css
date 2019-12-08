@@ -2,6 +2,10 @@
   color: white;
 }
 
+#create_custom {
+  margin-bottom: 10px;
+}
+
 nav.navbar.navbar-expand-lg.navbar-light,
 .footer {
   background-color: #12415D !important;
