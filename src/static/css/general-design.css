@@ -21,6 +21,10 @@ a.nav-link {
   background-color: #598cab;
 }
 
+#create_custom {
+  margin-bottom: 10px;
+}
+
 .img-center {
   align-items: center;
   display: flex;

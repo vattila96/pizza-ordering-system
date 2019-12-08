@@ -63,8 +63,12 @@
                     </tbody>
                 </table>
             <p class="text-right">
-                <a href="{% url "pizzalist" %}" class="btn">{% trans "Continue Shopping" %}</a>
-                <a href="https://stripe-payments-demo.appspot.com/" class="btn">{% trans "Checkout" %}</a>
+                <a href="{% url "pizzalist" %}" class="btn btn-secondary" style="background-color: green">{% trans "Continue Shopping" %}</a>
+                {% if cart.valid_cart %}
+                <a href="https://stripe-payments-demo.appspot.com/" class="btn btn-secondary" style="background-color: green">{% trans "Checkout" %}</a>
+                {% else %}
+                <a href="" class="btn btn-secondary" style="background-color: gray">{% trans "Checkout" %}</a>
+                {% endif %}
             </p>
             </div>
         </div>
