@@ -13,7 +13,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../../static/css/pizzalist.css">
     <link rel="stylesheet" href="{% static 'css/album.css' %}">
-    <link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/general-design.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -31,60 +31,57 @@
                 <div class="col-2 center-block">
                     <form action='categoryFilter' method='POST'>{% csrf_token %}
                         <div>
-                            <button class="btn side-btn btn-lg btn-block" type="submit" name="category"
-                                value="all">All Items</button>
+                            <button class="btn side-btn btn-lg btn-block" type="submit" name="category" value="all">All
+                                Items</button>
                         </div>
                     </form>
                     {% for category in categories %}
-                        <form action='categoryFilter' method='POST'>{% csrf_token %}
-                            <div>
-                                <button class="btn side-btn btn-lg btn-block" type="submit" name="category"
-                                    value="{{ category.name }}">{{ category.name }}</button>
-                            </div>
-                        </form>
+                    <form action='categoryFilter' method='POST'>{% csrf_token %}
+                        <div>
+                            <button class="btn side-btn btn-lg btn-block" type="submit" name="category"
+                                value="{{ category.name }}">{{ category.name }}</button>
+                        </div>
+                    </form>
                     {% endfor %}
                 </div>
                 <div class="col">
                     <div class="input-group mt-3 justify-content-end">
                         <form action='pizzaSearch' method='POST'>{% csrf_token %}
                             <div class="input-group-append">
-                                <input name="search_keyword" type="text" class="form-control"
+                                {% comment %} Todo change hard-coded allergens to a new Class in the DB {% endcomment %}
+                                <div class="allergens">Allergens to exclude:</div>
+                                <label class="allergene-label"><input type="checkbox" value="milk"
+                                        name="allergens">Milk</label>
+                                <label class="allergene-label"><input type="checkbox" value="peanuts"
+                                        name="allergens">Peanuts</label>
+                                <label class="allergene-label"><input type="checkbox" value="gluten"
+                                        name="allergens">Gluten</label>
+                                <label class="allergene-label"><input type="checkbox" value="fish"
+                                        name="allergens">Fish</label>
+                                <label class="allergene-label"><input type="checkbox" value="wheat"
+                                        name="allergens">Wheat</label>
+                                <input name="search_keyword" type="text" class=""
                                     placeholder="Search for pizza">
-                                <button class="btn" type="submit"
-                                    id="button-addon2">Search</button>
+                                <button class="btn" type="submit" id="button-addon2">Search</button>
                             </div>
                         </form>
 
                         <form action='pizzaReset' method='POST'>{% csrf_token %}
-                            <div class="input-group-append">                        
+                            <div class="input-group-append">
                                 <button name="reset_keyword" class="btn" type="submit" id="button-addon2">Reset</button>
                             </div>
                         </form>
                     </div>
-                    <div class="checkbox-filter">
-                        <div class="allergens allergene-title">Allergens to exclude:</div>
-                        <div class="allergens">
-                            <label class="allergene-label">Milk<input type="checkbox" name="vehicle1"
-                                    value="allergene1"></label>
-                            <label class="allergene-label">Peanuts or their derivatives<input type="checkbox"
-                                    name="vehicle1" value="allergene1"></label>
-                            <!-- <label class="allergene-label">allergene1:<input type="checkbox" name="vehicle1"
-                                                                         value="allergene1"></label>
-                        <label class="allergene-label">allergene1:<input type="checkbox" name="vehicle1"
-                                                                         value="allergene1"></label>
-                        <label class="allergene-label">allergene1:<input type="checkbox" name="vehicle1"
-                                                                         value="allergene1"></label> -->
-                        </div>
-                </div>
-                <div class="pizza-list">
-                    <div class="mb-3 pizza-card center">
-                        <div class=" w-25">
-                            <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
+
+                    <div class="pizza-list">
+                        <div class="mb-3 pizza-card center">
+                            <div class=" w-25">
+                                <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
                                     type="button" class="btn" id="create_custom">Create custom pizza
-                            </button>
-                        </div>
-                        {% for pizza in pizzas %}
-                        {% if pizza.is_custom_pizza %}
+                                </button>
+                            </div>
+                            {% for pizza in pizzas %}
+                            {% if pizza.is_custom_pizza %}
                             <div class="card mb-3 blue-card text-light pizza-card center">
                                 <div class="row no-gutters">
                                     <div class="col-md-12">
@@ -98,10 +95,12 @@
                                                 <form action="{% url "cart_add" pizza.id %}" method="post">
                                                     {% csrf_token %}
                                                     <span class="float-right mr-4 mb-2">
+
                                                         <input type="submit" name="regular" class="btn btn-secondary" style="background-color: green" value="Add to cart">
                                                     </span>
                                                     <span class="float-right mr-4 mb-2">
                                                         <input type="submit" name="mixed" class="btn btn-secondary" style="background-color: green" value="Add to cart as half">
+
                                                     </span>
                                                     <span class="float-right mr-4 mb-2">
                                                         <button data-toggle="modal" data-target="#customize-pizza-modal"
@@ -109,9 +108,10 @@
                                                             style="background-color: green">Edit
                                                         </button>
                                                     </span>
-                                                 </form>
+                                                </form>
                                                 {% else %}
                                                 <span class="float-right mr-4 mb-2">
+
                                                         <button title="You need to be logged in to add items to the shopping cart"
                                                                 class="btn btn-secondary"
                                                                 style="background-color: gray"
@@ -127,25 +127,27 @@
                                                                 type="button" class="btn btn-secondary"
                                                                 style="background-color: gray"
                                                                 disabled>Edit</button></span>
+
                                                 {% endif %}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        {% endif %}
-                        {% endfor %}
-                        <h4>CUSTOM PIZZAS ABOVE</h4> <!-- You can delete it, just for test to see changes-->
-                        {% for pizza in pizzas %}
-                        {% if pizza.is_custom_pizza %}
-                        {% else %}
+                            {% endif %}
+                            {% endfor %}
+                            <h4>CUSTOM PIZZAS ABOVE</h4> <!-- You can delete it, just for test to see changes-->
+                            {% for pizza in pizzas %}
+                            {% if pizza.is_custom_pizza %}
+                            {% else %}
                             <div class="card mb-3 blue-card text-light pizza-card center">
                                 <div class="row no-gutters">
                                     <div class="col-md-2">
                                         {% if pizza.image %}
-                                            <img src="{{ pizza.image.url }}" class="card-img" alt="...">
+                                        <img src="{{ pizza.image.url }}" class="card-img" alt="...">
                                         {%  else %}
-                                            <img src="https://source.unsplash.com/random/100x100" class="card-img" alt="...">
+                                        <img src="https://source.unsplash.com/random/100x100" class="card-img"
+                                            alt="...">
                                         {% endif %}
                                     </div>
                                     <div class="col-md-10">
@@ -157,6 +159,7 @@
                                                 <span>{{ pizza.category }}</span><br>
                                                 <span>{{ pizza.price }} HUF</span>
                                                 {% if user.is_authenticated %}
+
                                                     <form action="{% url "cart_add" pizza.id %}" method="post">
                                                         {% csrf_token %}
                                                         <span class="float-right mr-4 mb-2">
@@ -186,6 +189,7 @@
                                                                   style="background-color: gray"
                                                                   disabled>Edit</button>
                                                   </span>
+
                                                 {% endif %}
                                             </p>
                                         </div>
@@ -496,7 +500,7 @@
                     <div class="col-4 right-col">
                         <div class="row">
                             <div class="col-5">
-                                <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza"/>
+                                <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza" />
                             </div>
                             <div class="col-7">
                                 <p><b>Price:</b> $8</p>
@@ -523,7 +527,7 @@
                                 </div>
                             </div>
                         </div-->
-                        <hr/>
+                        <hr />
                         <div class="row">
                             <div class="col-12">
                                 <form>
@@ -535,7 +539,8 @@
                                             pizza.</small>
                                     </div>-->
                                     <div class="d-flex flex-row justify-content-end">
-                                        <button type="submit" data-dismiss="modal" class="btn btn-primary float-right">Save pizza</button>
+                                        <button type="submit" data-dismiss="modal"
+                                            class="btn btn-primary float-right">Save pizza</button>
                                     </div>
                                 </form>
                             </div>
@@ -545,41 +550,41 @@
             </div>
         </div>
     </div>
-<!-- CUSTOMIZE PIZZA MODAL FOR EDIT END -->
+    <!-- CUSTOMIZE PIZZA MODAL FOR EDIT END -->
 
 
-<!-- CUSTOMIZE PIZZA MODAL FOR CREATE PIZZA-->
-<div class="modal fade" id="customize-pizza-modal-for-custompizza" tabindex="-1" role="dialog" aria-labelledby="customize-pizza"
-     aria-hidden="true">
-    <div class="modal-dialog custom-pizza-modal" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="customize-pizza">Create your own pizza</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">       
-                    <div class="col-4 right-col">
-                        <div class="row">
-                            <div class="col-5">
-                                <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza"/>
+    <!-- CUSTOMIZE PIZZA MODAL FOR CREATE PIZZA-->
+    <div class="modal fade" id="customize-pizza-modal-for-custompizza" tabindex="-1" role="dialog"
+        aria-labelledby="customize-pizza" aria-hidden="true">
+        <div class="modal-dialog custom-pizza-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customize-pizza">Create your own pizza</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4 right-col">
+                            <div class="row">
+                                <div class="col-5">
+                                    <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza" />
+                                </div>
+                                <div class="col-7">
+                                    <p><b>Price:</b> $<span class="pizza_price"></span></p>
+                                    <p>
+                                        Toppings:
+                                    </p>
+                                    <ul>
+                                        <li>mushroom x2 - 0.8$</li>
+                                        <li>mushroom x2 - 0.8$</li>
+                                        <li>mushroom x2 - 0.8$</li>
+                                        <li>...</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="col-7">
-                                <p><b>Price:</b> $<span class="pizza_price"></span></p>
-                                <p>
-                                    Toppings:
-                                </p>
-                                <ul>
-                                    <li>mushroom x2 - 0.8$</li>
-                                    <li>mushroom x2 - 0.8$</li>
-                                    <li>mushroom x2 - 0.8$</li>
-                                    <li>...</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--div class="row">
+                            <!--div class="row">
                             <div class="col-12">
                                 <div class="d-flex flex-row justify-content-end pt-4">
                                     <form action="" method="post">
@@ -591,25 +596,28 @@
                                 </div>
                             </div>
                         </div-->
-                        <hr/>
-                        <div class="row">
-                            <div class="col-12">
-                                <form action="" method="POST">{% csrf_token %}
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input name="custompizza_name" type="text" class="form-control" id="name" aria-describedby="namehelp"
-                                                    placeholder="Name">
-                                            <small id="namehelp" class="form-text text-muted">The name of your custom pizza.</small>
-                                            
-                                            <label for="price">Price:</label>
-                                            $<span class="pizza_price"></span>
-                                            <input name="custompizza_price" type="hidden" class="form-control pizza_price_form" id="price" value="">
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-end">
-                                            <button type="submit" data_dismiss="modal" class="btn btn-primary float-right">Create pizza</button>
-                                        </div>
-                                    </form>
+                            <hr />
+                            <div class="row">
+                                <div class="col-12">
+                                    <form action="" method="POST">{% csrf_token %}
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="name">Name</label>
+                                                <input name="custompizza_name" type="text" class="form-control"
+                                                    id="name" aria-describedby="namehelp" placeholder="Name">
+                                                <small id="namehelp" class="form-text text-muted">The name of your
+                                                    custom pizza.</small>
+
+                                                <label for="price">Price:</label>
+                                                $<span class="pizza_price"></span>
+                                                <input name="custompizza_price" type="hidden"
+                                                    class="form-control pizza_price_form" id="price" value="">
+                                            </div>
+                                            <div class="d-flex flex-row justify-content-end">
+                                                <button type="submit" data_dismiss="modal"
+                                                    class="btn btn-primary float-right">Create pizza</button>
+                                            </div>
+                                        </form>
                                 </div>
                             </div>
                         </div>
@@ -618,28 +626,29 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-<!-- CUSTOMIZE PIZZA MODAL FOR CUSTOM PIZZA END -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <!-- CUSTOMIZE PIZZA MODAL FOR CUSTOM PIZZA END -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
 
 <script>
-$(document).ready(function(){
-    $("#create_custom").click(function(){
-        let rand = Math.floor((Math.random() * 25) + 1);
-        $(".pizza_price").html(rand);
-        $(".pizza_price_form").val(rand);
+    $(document).ready(function () {
+        $("#create_custom").click(function () {
+            let rand = Math.floor((Math.random() * 25) + 1);
+            $(".pizza_price").html(rand);
+            $(".pizza_price_form").val(rand);
+        });
     });
-});
+
 </script>
