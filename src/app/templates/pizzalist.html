@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="pizza-list">
-                        <div class="mb-3 pizza-card center">
+                        <div class="mb-3 center">
                             <div class=" w-25">
                                 <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
                                     type="button" class="btn" id="create_custom">Create custom pizza
@@ -82,7 +82,7 @@
                             </div>
                             {% for pizza in pizzas %}
                             {% if pizza.is_custom_pizza %}
-                            <div class="card mb-3 blue-card text-light pizza-card center">
+                            <div class="card mb-3 blue-card text-light center">
                                 <div class="row no-gutters">
                                     <div class="col-md-12">
                                         <div class="card-body pizza-body">
@@ -140,8 +140,8 @@
                             {% for pizza in pizzas %}
                             {% if pizza.is_custom_pizza %}
                             {% else %}
-                            <div class="card mb-3 blue-card text-light pizza-card center">
-                                <div class="row no-gutters">
+                            <div class="card mb-3 blue-card text-light center">
+                                <div class="row img-center no-gutters">
                                     <div class="col-md-2">
                                         {% if pizza.image %}
                                         <img src="{{ pizza.image.url }}" class="card-img" alt="...">
