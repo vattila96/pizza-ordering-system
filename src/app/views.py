@@ -1,18 +1,17 @@
-import datetime
 import base64
+
 import requests
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
-from django.views import generic
-from django.utils.translation import gettext as _
-from .models import *
-from .domain.models import *
-from django import forms
-from django.views.decorators.http import require_POST
-from .cart import Cart
+from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
+from django.views import generic
+from django.views.decorators.http import require_POST
+
+from .cart import Cart
+from .domain.models import *
 from .forms import *
 
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 30)]

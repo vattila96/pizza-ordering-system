@@ -63,7 +63,8 @@
                 </table>
             <p class="text-right">
                 <a href="{% url "pizzalist" %}" class="btn">Continue Shopping</a>
-                <a href="https://stripe-payments-demo.appspot.com/" class="btn">Checkout</a>
+                <a href="http://localhost:9000/process-payment?redirect=http://localhost:8000&amount={{ cart.get_total_price }}"
+                   class="btn">Checkout</a>
             </p>
             </div>
         </div>
