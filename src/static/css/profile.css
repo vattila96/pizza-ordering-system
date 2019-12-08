@@ -1,8 +1,74 @@
-.warn {
-    background-color: #ffeeba;
+.profile-page button[type="submit"] {
+    margin-top: 15px;
 }
 
-.btn-prim-cust {
-    background-color: #ffc107;
-    border-color: #ffc107;
+.profile-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-page form ul li {
+    list-style: none;
+    min-width: 250px;
+}
+
+.profile-page form label {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.profile-page form label,
+.profile-page form input {
+    width: 50%;
+    display: block;
+}
+
+.profile-page form ul {
+    align-self: flex-start;
+    margin-left: 25%;
+    padding-left: 0px;
+}
+
+.profile-page form ul label {
+    margin-top: 0px;
+}
+
+.profile-page form ul label input {
+    display: inline-block;
+    width: auto;
+}
+
+#id_newsletter {
+    align-self: flex-start;
+    width: auto;
+    margin-left: calc(25% + 90px);
+    margin-top: -17px;
+}
+
+input {
+    padding: 0.3% 0.9%;
+    margin: 1% 0.1%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+@media(max-width: 768px) {
+    .profile-page form label,
+    .profile-page form input {
+        width: 100%;
+    }
+
+   .profile-page form ul {
+        margin-left: 0;
+    }
+
+    #id_newsletter {
+        align-self: flex-start;
+        width: auto;
+        margin-left: calc(0% + 90px);
+        margin-top: -17px;
+    }
 }
