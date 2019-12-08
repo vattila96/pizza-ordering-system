@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -13,7 +14,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}" >
     <link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
-    <title>Pizza - Profile</title>
+    <title>{% trans "Pizza - Profile:" %}</title>
   </head>
   <body>
     {% include 'layouts/navbar.html' %}
@@ -21,12 +22,12 @@
 
     <main role="main">
       <div class="container profile-page bg-blue text-light pb-4">
-        <h1 class="text-center">Profile - {{user.username}}</h1>
+        <h1 class="text-center">{% trans "Profile" %} - {{user.username}}</h1>
         <form method="post">
           {% csrf_token %}
           {{ user_form.as_table }}
           {{ profile_form.as_table }}
-          <button class="btn" type="submit">Update</button>
+          <button class="btn" type="submit">{% trans "Update" %}</button>
         </form>
       </div>
     </main>

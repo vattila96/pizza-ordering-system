@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#: app/templates/index.html:33
+msgid "Our pizzeria"
+msgstr "A pizzériánk"
+
+#: app/templates/index.html:39
+msgid "Pizza is an Italian food that is now spread throughout the world. It is based on a thin slice of Celtic pasta covered with tomato or sour cream based sauce, topped with various toppings (the most common are vegetables, mushrooms and cold cuts), and the dough is finally sprinkled with grated cheese and baked. Typical spices include oregano and pepperoni. The original Italian pizza is served with mozzarella, basil and olive oil, which may come with additional ingredients."
+msgstr "A pizza olasz eredetű étel, ami mára az egész világon elterjedt. Alapja egy kelt tésztából készült vékony lepénykenyér, melyet paradicsom vagy tejföl alapú szósszal borítanak, és erre különféle feltétek kerülnek, (a leggyakoribbak a különféle zöldségek, gomba és felvágottak), a tésztát végül reszelt sajttal szórják meg és sütőben megsütik. Jellegzetes fűszerei közé tartozik az oregánó és a pepperoni. Az eredeti olasz pizzára mozzarellát, bazsalikomot és olíva olajat tesznek, erre kerülhet további feltét."
+
+#: app/templates/index.html:43
+msgid "Map"
+msgstr "Térkép"
+
+#: app/templates/index.html:61 app/templates/index.html:69
+msgid "On sale"
+msgstr "Akciós"
+
+#: app/templates/index.html:77 app/templates/index.html:85
+msgid "Recommended"
+msgstr "Ajánlott"
+
+#: app/templates/layouts/navbar.html:25
+msgid "Home"
+msgstr "Kezdőlap"
+
+#: app/templates/layouts/navbar.html:28
+msgid "Pizzas"
+msgstr "Pizzák"
+
+#: app/templates/layouts/navbar.html:32 app/templates/profile.html:25
+msgid "Profile"
+msgstr "Profil"
+
+#: app/templates/layouts/navbar.html:35
+msgid "My orders"
+msgstr "Rendeléseim"
+
+#: app/templates/layouts/navbar.html:38
+msgid "Reset password"
+msgstr "Jelszó módosítása"
+
+#: app/templates/layouts/navbar.html:41
+msgid "Log out"
+msgstr "Kilépés"
+
+#: app/templates/layouts/navbar.html:45 app/templates/signup.html:24
+#: app/templates/signup.html:28
+msgid "Sign up"
+msgstr "Regisztráció"
+
+#: app/templates/layouts/navbar.html:48
+msgid "Log in"
+msgstr "Belépés"
+
+#: app/templates/layouts/navbar.html:52
+msgid "Go to Admin"
+msgstr "Admin felület"
+
+#: app/templates/layouts/navbar.html:56
+msgid "Contact"
+msgstr "Kapcsolat"
+
+#: app/templates/layouts/navbar.html:59
+msgid "Follow on Twitter"
+msgstr "Kövess Twitteren"
+
+#: app/templates/layouts/navbar.html:61
+msgid "Like on Facebook"
+msgstr "Lájkolj Facebookon"
+
+#: app/templates/layouts/navbar.html:63
+msgid "Email me"
+msgstr "Küldj e-mailt"
+
+#: app/templates/pizza/pizzexample.html:38
+msgid "Magyar szöveg..."
+msgstr "English text..."
+
+#: app/templates/pizzalist.html:22
+msgid "Pizza - Pizzas"
+msgstr "Pizza - Pizzák"
+
+#: app/templates/pizzalist.html:36
+msgid "All Items"
+msgstr "Minden termék"
+
+#: app/templates/pizzalist.html:53
+msgid "Allergens to exclude:"
+msgstr "Allergéneket ne tartalmazza:"
+
+#: app/templates/pizzalist.html:55
+msgid "Milk"
+msgstr "Laktóz"
+
+#: app/templates/pizzalist.html:57
+msgid "Peanuts"
+msgstr "Mogyorófélék"
+
+#: app/templates/pizzalist.html:59
+msgid "Gluten"
+msgstr "Glutén"
+
+#: app/templates/pizzalist.html:61
+msgid "Fish"
+msgstr "Hal"
+
+#: app/templates/pizzalist.html:63
+msgid "Wheat"
+msgstr "Búza"
+
+#: app/templates/pizzalist.html:65
+msgid "Search for pizza"
+msgstr "Pizza keresése"
+
+#: app/templates/pizzalist.html:66
+msgid "Search"
+msgstr "Keresés"
+
+#: app/templates/pizzalist.html:72
+msgid "Reset"
+msgstr "Alaphelyzet"
+
+#: app/templates/pizzalist.html:81
+msgid "Create custom pizza"
+msgstr "Saját pizza készítése"
+
+#: app/templates/pizzalist.html:100 app/templates/pizzalist.html:119
+#: app/templates/pizzalist.html:165 app/templates/pizzalist.html:176
+msgid "Add to cart"
+msgstr "Kosárhoz adás"
+
+#: app/templates/pizzalist.html:103 app/templates/pizzalist.html:124
+#: app/templates/pizzalist.html:168 app/templates/pizzalist.html:182
+msgid "Add to cart as half"
+msgstr "Kosárhoz adás félként"
+
+#: app/templates/pizzalist.html:109 app/templates/pizzalist.html:130
+#: app/templates/pizzalist.html:189
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: app/templates/pizzalist.html:228
+msgid "Customize your pizza"
+msgstr "Pizza szerkesztése"
+
+#: app/templates/pizzalist.html:240
+msgid "Bases / Sauces"
+msgstr "Alapok / Szószok"
+
+#: app/templates/pizzalist.html:243 app/templates/pizzalist.html:575
+msgid "Toppings"
+msgstr "Feltétek"
+
+#: app/templates/pizzalist.html:252
+msgid "Size"
+msgstr "Méret"
+
+#: app/templates/pizzalist.html:260
+msgid "Base"
+msgstr "Alap"
+
+#: app/templates/pizzalist.html:266
+msgid "Classic"
+msgstr "Klasszikus"
+
+#: app/templates/pizzalist.html:273
+msgid "Italian"
+msgstr "Olasz"
+
+#: app/templates/pizzalist.html:280
+msgid "Lactose free"
+msgstr "Laktózmentes"
+
+#: app/templates/pizzalist.html:286 app/templates/pizzalist.html:291
+#: app/templates/pizzalist.html:298 app/templates/pizzalist.html:305
+#: app/templates/pizzalist.html:312 app/templates/pizzalist.html:319
+#: app/templates/pizzalist.html:326 app/templates/pizzalist.html:333
+msgid "Sauce"
+msgstr "Szósz"
+
+#: app/templates/pizzalist.html:347 app/templates/pizzalist.html:359
+#: app/templates/pizzalist.html:371 app/templates/pizzalist.html:383
+#: app/templates/pizzalist.html:395 app/templates/pizzalist.html:407
+#: app/templates/pizzalist.html:421 app/templates/pizzalist.html:433
+#: app/templates/pizzalist.html:445 app/templates/pizzalist.html:457
+#: app/templates/pizzalist.html:469 app/templates/pizzalist.html:481
+msgid "Topping"
+msgstr "Feltét"
+
+#: app/templates/pizzalist.html:504
+msgid "Price:"
+msgstr "Ár:"
+
+#: app/templates/pizzalist.html:506
+msgid "Toppings:"
+msgstr "Feltétek:"
+
+#: app/templates/pizzalist.html:509 app/templates/pizzalist.html:510
+#: app/templates/pizzalist.html:511
+msgid "mushroom:"
+msgstr "gomba:"
+
+#: app/templates/pizzalist.html:541
+msgid "Save pizza"
+msgstr "Pizza mentése"
+
+#: app/templates/pizzalist.html:560
+msgid "Create your own pizza"
+msgstr "Saját pizza készítése"
+
+#: app/templates/pizzalist.html:573 app/templates/pizzalist.html:608
+#: app/templates/shoppingcart.html:34
+msgid "Price"
+msgstr "Ár"
+
+#: app/templates/shoppingcart.html:60 app/templates/myorders.html:54
+msgid "Total"
+msgstr "Összesen"
+
+#: app/templates/pizzalist.html:578 app/templates/pizzalist.html:579
+#: app/templates/pizzalist.html:580
+msgid "mushroom"
+msgstr "gomba"
+
+#: app/templates/pizzalist.html:603
+msgid "Name"
+msgstr "Nlv"
+
+#: app/templates/pizzalist.html:606
+msgid "The name of your custom pizza."
+msgstr "A saját pizza neve."
+
+#: app/templates/pizzalist.html:615
+msgid "Create pizza"
+msgstr "Pizza készítése"
+
+#: app/templates/profile.html:17
+msgid "Pizza - Profile:"
+msgstr "Pizza - Profil:"
+
+#: app/templates/profile.html:30
+msgid "Update"
+msgstr "Frissítés"
+
+#: app/templates/registration/login.html:16
+msgid "Pizza - Login"
+msgstr "Módosítás"
+
+#: app/templates/registration/login.html:24
+#: app/templates/registration/login.html:28
+msgid "Login"
+msgstr "Belépés"
+
+#: app/templates/registration/password_reset_complete.html:17
+msgid "Pizza - Password reset complete!"
+msgstr "Pizza - Jelszó módosítás sikeres!"
+
+#: app/templates/registration/password_reset_complete.html:25
+msgid "Password reset complete"
+msgstr "Jelszó módosítás sikeres"
+
+#: app/templates/registration/password_reset_confirm.html:17
+msgid "Pizza - Confirm password reset!"
+msgstr "Pizza - Jelszó visszaállítás megerősítése!"
+
+#: app/templates/registration/password_reset_confirm.html:38
+msgid "The password reset link was invalid, possibly because it has already been used."
+msgstr "A jelszó visszaállító link nem működik, valószínűleg már használták."
+
+#: app/templates/registration/password_reset_confirm.html:39
+msgid "Please request a new password reset!"
+msgstr "Kérlek csinálj egy új jelszó visszaállítást!"
+
+#: app/templates/registration/password_reset_done.html:17
+msgid "Pizza - Password reset is done!"
+msgstr "Pizza - Jelszó visszaállítás végrehajtva!"
+
+#: app/templates/registration/password_reset_done.html:25
+msgid "Check your inbox."
+msgstr "Nézd meg a postaládád."
+
+#: app/templates/registration/password_reset_done.html:26
+msgid "We've emailed you instructions for setting your password. You should receive the email shortly!"
+msgstr "Küldtünk egy e-mail, a további teendőkért hogy beállítsad a jelszavad. Hamarosan meg kell érkeznie!"
+
+#: app/templates/registration/password_reset_form.html:17
+msgid "Pizza - Password reset"
+msgstr "Pizza - Jelszó visszaállítás"
+
+#: app/templates/registration/password_reset_form.html:25
+msgid "Forgot your password?"
+msgstr "Elfelejtetted a jelszavad?"
+
+#: app/templates/registration/password_reset_form.html:26
+msgid "Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Írd be az e-mail címed, és mi küldünk egy levelet a további instrukciókért, hogy beállíts egy új jelszót."
+
+#: app/templates/shoppingcart.html:16
+msgid "Pizza - My shopping cart"
+msgstr "Pizza - Bevásárlókosaram"
+
+#: app/templates/shoppingcart.html:25
+msgid "Your Shopping Cart"
+msgstr "Kosarad"
+
+#: app/templates/shoppingcart.html:30
+msgid "Product"
+msgstr "Termék"
+
+#: app/templates/shoppingcart.html:31
+msgid "Quantity"
+msgstr "Mennyiség"
+
+#: app/templates/shoppingcart.html:32 app/templates/shoppingcart.html:51
+msgid "Remove"
+msgstr "Eltávolít"
+
+#: app/templates/shoppingcart.html:33
+msgid "Unit Price"
+msgstr "Egységár"
+
+#: app/templates/shoppingcart.html:66
+msgid "Continue Shopping"
+msgstr "Vásárlás folytatása"
+
+#: app/templates/shoppingcart.html:68 app/templates/shoppingcart.html:70
+msgid "Checkout"
+msgstr "Tovább a fizetéshez"
+
+#: app/templates/signup.html:16
+msgid "Pizza - Sign up!"
+msgstr "Pizza - Regisztráció!"
+
+#: app/templates/myorders.html:25
+msgid "My previous orders"
+msgstr "Előző rendeléseim"
+
+#: app/templates/myorders.html:28
+msgid "Food delivery:"
+msgstr "Futár:"
+
+#: app/templates/myorders.html:42
+msgid "Shipping here:"
+msgstr "Szállítás ide:"
+
+#: app/templates/myorders.html:59
+msgid "Reorder"
+msgstr "Újrarendelés"

@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -18,7 +19,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{% static 'css/custom-pizza.css' %}">
-    <title>Pizza - Pizzas</title>
+    <title>{% trans "Pizza - Pizzas" %}</title>
 </head>
 
 <body>
@@ -31,8 +32,8 @@
                 <div class="col-2 center-block">
                     <form action='categoryFilter' method='POST'>{% csrf_token %}
                         <div>
-                            <button class="btn side-btn btn-lg btn-block" type="submit" name="category" value="all">All
-                                Items</button>
+                            <button class="btn side-btn btn-lg btn-block" type="submit" name="category"
+                                value="all">{% trans "All Items" %}</button>
                         </div>
                     </form>
                     {% for category in categories %}
@@ -49,26 +50,26 @@
                         <form action='pizzaSearch' method='POST'>{% csrf_token %}
                             <div class="input-group-append">
                                 {% comment %} Todo change hard-coded allergens to a new Class in the DB {% endcomment %}
-                                <div class="allergens">Allergens to exclude:</div>
+                                <div class="allergens">{% trans "Allergens to exclude:" %}</div>
                                 <label class="allergene-label"><input type="checkbox" value="milk"
-                                        name="allergens">Milk</label>
+                                        name="allergens">{% trans "Milk" %}</label>
                                 <label class="allergene-label"><input type="checkbox" value="peanuts"
-                                        name="allergens">Peanuts</label>
+                                        name="allergens">{% trans "Peanuts" %}</label>
                                 <label class="allergene-label"><input type="checkbox" value="gluten"
-                                        name="allergens">Gluten</label>
+                                        name="allergens">{% trans "Gluten" %}</label>
                                 <label class="allergene-label"><input type="checkbox" value="fish"
-                                        name="allergens">Fish</label>
+                                        name="allergens">{% trans "Fish" %}</label>
                                 <label class="allergene-label"><input type="checkbox" value="wheat"
-                                        name="allergens">Wheat</label>
+                                        name="allergens">{% trans "Wheat" %}</label>
                                 <input name="search_keyword" type="text" class=""
-                                    placeholder="Search for pizza">
-                                <button class="btn" type="submit" id="button-addon2">Search</button>
+                                    placeholder='{% trans "Search for pizza" %}'>
+                                <button class="btn" type="submit" id="button-addon2">{% trans "Search" %}</button>
                             </div>
                         </form>
 
                         <form action='pizzaReset' method='POST'>{% csrf_token %}
                             <div class="input-group-append">
-                                <button name="reset_keyword" class="btn" type="submit" id="button-addon2">Reset</button>
+                                <button name="reset_keyword" class="btn" type="submit" id="button-addon2">{% trans "Reset" %}</button>
                             </div>
                         </form>
                     </div>
@@ -77,7 +78,7 @@
                         <div class="mb-3 center">
                             <div class=" w-25">
                                 <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
-                                    type="button" class="btn" id="create_custom">Create custom pizza
+                                    type="button" class="btn" id="create_custom">{% trans "Create custom pizza" %}
                                 </button>
                             </div>
                             {% for pizza in pizzas %}
@@ -96,16 +97,16 @@
                                                         {% csrf_token %}
                                                         <span class="float-right mr-4 mb-2">
 
-                                                            <input type="submit" name="regular" class="btn btn-secondary" style="background-color: green" value="Add to cart">
+                                                            <input type="submit" name="regular" class="btn btn-secondary" style="background-color: green" value='{% trans "Add to cart" %}'>
                                                         </span>
                                                         <span class="float-right mr-4 mb-2">
-                                                            <input type="submit" name="mixed" class="btn btn-secondary" style="background-color: green" value="Add to cart as half">
+                                                            <input type="submit" name="mixed" class="btn btn-secondary" style="background-color: green" value='{% trans "Add to cart as half" %}'>
 
                                                         </span>
                                                         <span class="float-right mr-4 mb-2">
                                                             <button data-toggle="modal" data-target="#customize-pizza-modal"
                                                                 type="button" class="btn btn-secondary"
-                                                                style="background-color: green">Edit
+                                                                style="background-color: green">{% trans "Edit" %}
                                                             </button>
                                                         </span>
                                                     </form>
@@ -115,19 +116,18 @@
                                                             <button title="You need to be logged in to add items to the shopping cart"
                                                                     class="btn btn-secondary"
                                                                     style="background-color: gray"
-                                                                    disabled>Add to cart</button></span>
+                                                                    disabled>{% trans "Add to cart" %}</button></span>
                                                     <span class="float-right mr-4 mb-2">
                                                             <button title="You need to be logged in to add items to the shopping cart"
                                                                     class="btn btn-secondary"
                                                                     style="background-color: gray"
-                                                                    disabled>Add to cart as half</button></span>
+                                                                    disabled>{% trans "Add to cart as half" %}</button></span>
                                                         <span class="float-right">
                                                             <button data-toggle="modal" data-target="#customize-pizza-modal"
                                                                     title="You need to be logged in to edit pizzas"
                                                                     type="button" class="btn btn-secondary"
                                                                     style="background-color: gray"
-                                                                    disabled>Edit</button></span>
-
+                                                                    disabled>{% trans "Edit" %}</button></span>
                                                     {% endif %}
                                                 </p>
                                             </div>
@@ -136,7 +136,6 @@
                                 </div>
                                 {% endif %}
                             {% endfor %}
-                            <h4>CUSTOM PIZZAS ABOVE</h4> <!-- You can delete it, just for test to see changes-->
                             {% for pizza in pizzas %}
                                 {% if pizza.is_custom_pizza %}
                                 {% else %}
@@ -163,10 +162,10 @@
                                                             <form action="{% url "cart_add" pizza.id %}" method="post">
                                                                 {% csrf_token %}
                                                                 <span class="float-right mr-4 mb-2">
-                                                                    <input type="submit" name="regular" class="btn btn-secondary" style="background-color: green" value="Add to cart">
+                                                                    <input type="submit" name="regular" class="btn btn-secondary" style="background-color: green" value='{% trans "Add to cart" %}'>
                                                                 </span>
                                                                 <span class="float-right mr-4 mb-2">
-                                                                    <input type="submit" name="mixed" class="btn btn-secondary" style="background-color: green" value="Add to cart as half">
+                                                                    <input type="submit" name="mixed" class="btn btn-secondary" style="background-color: green" value='{% trans "Add to cart as half" %}'>
                                                                 </span>
                                                             </form>
                                                         {% else %}
@@ -174,20 +173,20 @@
                                                                 <button title="You need to be logged in to add items to the shopping cart"
                                                                         class="btn btn-secondary"
                                                                         style="background-color: gray"
-                                                                        disabled>Add to cart</button>
+                                                                        disabled>{% trans "Add to cart" %}</button>
                                                         </span>
                                                         <span class="float-right mr-4 mb-2">
                                                                 <button title="You need to be logged in to add items to the shopping cart"
                                                                         class="btn btn-secondary"
                                                                         style="background-color: gray"
-                                                                        disabled>Add to cart as half</button>
+                                                                        disabled>{% trans "Add to cart as half" %}</button>
                                                         </span>
                                                         <span class="float-right">
                                                                 <button data-toggle="modal" data-target="#customize-pizza-modal"
                                                                         title="You need to be logged in to edit pizzas"
                                                                         type="button" class="btn btn-secondary"
                                                                         style="background-color: gray"
-                                                                        disabled>Edit</button>
+                                                                        disabled>{% trans "Edit" %}</button>
                                                         </span>
 
                                                         {% endif %}
@@ -226,7 +225,7 @@
         <div class="modal-dialog custom-pizza-modal" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="customize-pizza">Customize your pizza</h5>
+                    <h5 class="modal-title" id="customize-pizza">{% trans "Customize your pizza" %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -238,11 +237,10 @@
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-bases-tab" data-toggle="tab"
                                         href="#nav-bases" role="tab" aria-controls="nav-bases"
-                                        aria-selected="true">Bases /
-                                        Sauces</a>
+                                        aria-selected="true">{% trans "Bases / Sauces" %}</a>
                                     <a class="nav-item nav-link" id="nav-toppings-tab" data-toggle="tab"
                                         href="#nav-toppings" role="tab" aria-controls="nav-toppings"
-                                        aria-selected="false">Toppings</a>
+                                        aria-selected="false">{% trans "Toppings" %}</a>
                                 </div>
                             </nav>
                             <div class="tab-content mt-4" id="nav-tabContent">
@@ -251,7 +249,7 @@
                                     <form>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p class="label">Size</p>
+                                                <p class="label">{% trans "Size" %}</p>
                                                 <div class="form-group">
                                                     <select class="form-control" id="size">
                                                         <option value="30">30 cm</option>
@@ -259,80 +257,80 @@
                                                         <option value="60">60 cm</option>
                                                     </select>
                                                 </div>
-                                                <p class="label">Base</p>
+                                                <p class="label">{% trans "Base" %}</p>
                                                 <div class="form-group">
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="pizza-base" type="radio"
                                                             value="0" id="classic" checked>
                                                         <label class="form-check-label" for="classic">
-                                                            Classic
+                                                                {% trans "Classic" %}
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="pizza-base" type="radio"
                                                             value="1" id="italian">
                                                         <label class="form-check-label" for="italian">
-                                                            Italian
+                                                                {% trans "Italian" %}
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="pizza-base" type="radio"
                                                             value="2" id="lactose-free">
                                                         <label class="form-check-label" for="lactose-free">
-                                                            Lactose free
+                                                                {% trans "Lactose free" %}
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <p class="label">Sauce</p>
+                                                <p class="label">{% trans "Sauce" %}</p>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
                                                         value="0" id="sauce-0" checked>
                                                     <label class="form-check-label" for="sauce-0">
-                                                        Sauce 1
+                                                        {% trans "Sauce" %} 1
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
                                                         value="1" id="sauce-1">
                                                     <label class="form-check-label" for="sauce-1">
-                                                        Sauce 2
+                                                        {% trans "Sauce" %} 2
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
                                                         value="2" id="sauce-2">
                                                     <label class="form-check-label" for="sauce-2">
-                                                        Sauce 3
+                                                        {% trans "Sauce" %} 3
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
                                                         value="3" id="sauce-3" checked>
                                                     <label class="form-check-label" for="sauce-3">
-                                                        Sauce 4
+                                                        {% trans "Sauce" %} 4
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
                                                         value="4" id="sauce-4">
                                                     <label class="form-check-label" for="sauce-4">
-                                                        Sauce 5
+                                                        {% trans "Sauce" %} 5
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
                                                         value="5" id="sauce-5">
                                                     <label class="form-check-label" for="sauce-5">
-                                                        Sauce 6
+                                                        {% trans "Sauce" %} 6
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
                                                         value="6" id="sauce-6">
                                                     <label class="form-check-label" for="sauce-6">
-                                                        Sauce 7
+                                                        {% trans "Sauce" %} 7
                                                     </label>
                                                 </div>
                                             </div>
@@ -346,7 +344,7 @@
                                             <div class="col-6">
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -358,7 +356,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -370,7 +368,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -382,7 +380,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -394,7 +392,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -406,7 +404,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -420,7 +418,7 @@
                                             <div class="col-6">
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -432,7 +430,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -444,7 +442,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -456,7 +454,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -468,7 +466,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -480,7 +478,7 @@
                                                 </div>
                                                 <div class="form-row align-items-center">
                                                     <div class="col-auto my-1">
-                                                        <label class="mr-sm-2" for="topping-label">Topping</label>
+                                                        <label class="mr-sm-2" for="topping-label">{% trans "Topping" %}</label>
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
@@ -503,14 +501,14 @@
                                 <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza" />
                             </div>
                             <div class="col-7">
-                                <p><b>Price:</b> $8</p>
+                                <p><b>{% trans "Price:" %}</b> $8</p>
                                 <p>
-                                    Toppings:
+                                    {% trans "Toppings:" %}
                                 </p>
                                 <ul>
-                                    <li>mushroom x2 - 0.8$</li>
-                                    <li>mushroom x2 - 0.8$</li>
-                                    <li>mushroom x2 - 0.8$</li>
+                                    <li>{% trans "mushroom:" %} x2 - 0.8$</li>
+                                    <li>{% trans "mushroom:" %} x2 - 0.8$</li>
+                                    <li>{% trans "mushroom:" %} x2 - 0.8$</li>
                                     <li>...</li>
                                 </ul>
                             </div>
@@ -540,7 +538,7 @@
                                     </div>-->
                                     <div class="d-flex flex-row justify-content-end">
                                         <button type="submit" data-dismiss="modal"
-                                            class="btn btn-primary float-right">Save pizza</button>
+                                            class="btn btn-primary float-right">{% trans "Save pizza" %}</button>
                                     </div>
                                 </form>
                             </div>
@@ -559,7 +557,7 @@
         <div class="modal-dialog custom-pizza-modal" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="customize-pizza">Create your own pizza</h5>
+                    <h5 class="modal-title" id="customize-pizza">{% trans "Create your own pizza" %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -572,14 +570,14 @@
                                     <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza" />
                                 </div>
                                 <div class="col-7">
-                                    <p><b>Price:</b> $<span class="pizza_price"></span></p>
+                                    <p><b>{% trans "Price" %}:</b> $<span class="pizza_price"></span></p>
                                     <p>
-                                        Toppings:
+                                        {% trans "Toppings" %}:
                                     </p>
                                     <ul>
-                                        <li>mushroom x2 - 0.8$</li>
-                                        <li>mushroom x2 - 0.8$</li>
-                                        <li>mushroom x2 - 0.8$</li>
+                                        <li>{% trans "mushroom" %} x2 - 0.8$</li>
+                                        <li>{% trans "mushroom" %}  x2 - 0.8$</li>
+                                        <li>{% trans "mushroom" %}  x2 - 0.8$</li>
                                         <li>...</li>
                                     </ul>
                                 </div>
@@ -602,20 +600,19 @@
                                     <form action="" method="POST">{% csrf_token %}
                                         <form>
                                             <div class="form-group">
-                                                <label for="name">Name</label>
+                                                <label for="name">{% trans "Name" %}</label>
                                                 <input name="custompizza_name" type="text" class="form-control"
                                                     id="name" aria-describedby="namehelp" placeholder="Name">
-                                                <small id="namehelp" class="form-text text-muted">The name of your
-                                                    custom pizza.</small>
+                                                <small id="namehelp" class="form-text text-muted">{% trans "The name of your custom pizza." %}</small>
 
-                                                <label for="price">Price:</label>
+                                                <label for="price">{% trans "Price" %}:</label>
                                                 $<span class="pizza_price"></span>
                                                 <input name="custompizza_price" type="hidden"
                                                     class="form-control pizza_price_form" id="price" value="">
                                             </div>
                                             <div class="d-flex flex-row justify-content-end">
                                                 <button type="submit" data_dismiss="modal"
-                                                    class="btn btn-primary float-right">Create pizza</button>
+                                                    class="btn btn-primary float-right">{% trans "Create pizza" %}</button>
                                             </div>
                                         </form>
                                 </div>
