@@ -8,3 +8,10 @@ indent_style = space
 insert_final_newline = true
 max_line_length = 120
 tab_width = 4
+
+[{*.ts,*.ats,*.tsx, *.js, *.scss, *.yml,*.yaml}]
+indent_size = 2
+tab_width = 2
+
+[{.stylelintrc,.eslintrc,.babelrc,jest.config,*.bowerrc,*.jsb3,*.jsb2,*.graphqlconfig,*.json}]
+indent_size = 2
