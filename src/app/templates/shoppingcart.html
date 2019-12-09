@@ -65,7 +65,8 @@
             <p class="text-right">
                 <a href="{% url "pizzalist" %}" class="btn btn-secondary" style="background-color: green">{% trans "Continue Shopping" %}</a>
                 {% if cart.valid_cart %}
-                <a href="https://stripe-payments-demo.appspot.com/" class="btn btn-secondary" style="background-color: green">{% trans "Checkout" %}</a>
+                <a href="http://localhost:9000/process-payment?redirect=http://localhost:8000/hu/get-paid&amount={{ cart.get_total_price }}"
+                   class="btn btn-secondary" style="background-color: green">{% trans "Checkout" %}</a>
                 {% else %}
                 <a href="" class="btn btn-secondary" style="background-color: gray">{% trans "Checkout" %}</a>
                 {% endif %}

@@ -9,5 +9,5 @@ export const sayHello = async (ctx: Context): Promise<void> => {
 export const processPayment = async (ctx: Context): Promise<void> => {
   const redirectUri = ctx.query.redirect
   if (!redirectUri) ctx.redirect('/error?code=400')
-  await ctx.render(viewUrlHandler('payment/payment'), { redirectUri })
+  await ctx.render(viewUrlHandler('payment/payment'), { redirectUri, amount: ctx.query.amount })
 }

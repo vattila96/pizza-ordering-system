@@ -1,35 +1,35 @@
-import datetime
 import base64
+from datetime import datetime
+
 import requests
-from decimal import Decimal
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
-from django.views import generic
-from django.utils.translation import gettext as _
-from django.utils.datastructures import MultiValueDictKeyError
-from .models import *
-from .domain.models import *
-from django import forms
-from django.views.decorators.http import require_POST
-from .cart import Cart
+from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.utils.datastructures import MultiValueDictKeyError
+from django.utils.translation import gettext as _
+from django.views import generic
+from django.views.decorators.http import require_POST
+
+from .cart import Cart
+from .domain.models import *
 from .forms import *
 
-PRODUCT_QUANTITY_CHOICES = [(i/2, str(i/2)) for i in range(1, 40)]
+PRODUCT_QUANTITY_CHOICES = [(i / 2, str(i / 2)) for i in range(1, 40)]
+
 
 class CartAddProductForm(forms.Form):
     quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=float)
     update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
+
 @require_POST
 def cart_add(request, product_id):
     try:
-      print(request.POST['mixed'])
-      quan = 0.5
+        quan = 0.5
     except MultiValueDictKeyError as er:
-      quan = 1.0
+        quan = 1.0
 
     cart = Cart(request)
     product = get_object_or_404(Pizza, id=product_id)
@@ -38,8 +38,9 @@ def cart_add(request, product_id):
         cd = form.cleaned_data
         cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
     else:
-      cart.add(product=product, quantity=quan)
+        cart.add(product=product, quantity=quan)
     return redirect('shoppingcart')
+
 
 def cart_remove(request, product_id):
     cart = Cart(request)
@@ -47,17 +48,41 @@ def cart_remove(request, product_id):
     cart.remove(product)
     return redirect('shoppingcart')
 
+
 def cart_detail(request):
     cart = Cart(request)
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
-        #item['quantity'] = int(item['quantity'])
+        # item['quantity'] = int(item['quantity'])
     return render(request, 'shoppingcart.html', {'cart': cart})
+
+
+def get_paid(request):
+    status = request.GET.get('status')
+    if status == "success":
+        cart = Cart(request)
+        courier = Courier.objects.all().order_by('id').first()
+        address = Address.objects.get(O_T_M_User_Adresses=request.user)
+        order = Order(
+            O_T_M_User_Orders=request.user, status="Fizetve!", discount=10,
+            delivery_date=datetime.now(), expected_giving_to_courier_date=datetime.now(),
+            given_to_courier_date=datetime.now(), expected_delivery_date=datetime.now(),
+            Courier_Orders_id=courier.id, comment="Best order ever!", O_T_O_Address_Order_id=address.id
+        )
+        # todo: add order items in another issue when pizzas are fixed!
+        order.save()
+        cart.clear()
+
+        return render(request, 'successful-payment.html')
+
+    return render(request, 'unsuccessful-payment.html')
+
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
+
 
 def index(request):
     home_page_detail = HomePageDetail.objects.last()
@@ -92,20 +117,21 @@ def pizzalist(request):
     if request.method == 'POST':
         keyword = request.POST.get("custompizza_name", None)
         if keyword != "":
-          pizza_price = request.POST.get("custompizza_price", None)
-          Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True, price=pizza_price).save()
+            pizza_price = request.POST.get("custompizza_price", None)
+            Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True, price=pizza_price).save()
 
     pizzas = Pizza.objects.all().order_by('-name')
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)
 
+
 def categoryfilter(request):
     category = request.POST.get("category", None)
     if category == "all":
-      pizzas = Pizza.objects.all().order_by('-name')
+        pizzas = Pizza.objects.all().order_by('-name')
     else:
-      pizzas = Pizza.objects.filter(category__name=category)
+        pizzas = Pizza.objects.filter(category__name=category)
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)
@@ -121,19 +147,18 @@ def pizzasearch(request):
     # Todo change hard-coded allergens to a new Class in the DB
     if "milk" in allergen_list:
         allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_milk=False)
-    
+
     if "peanuts" in allergen_list:
         allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_peanuts=False)
-    
+
     if "gluten" in allergen_list:
         allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_gluten=False)
-    
+
     if "fish" in allergen_list:
         allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_fish=False)
-    
+
     if "wheat" in allergen_list:
         allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_wheat=False)
-    
 
     name_contains = allergen_correct_pizzas.filter(name__icontains=keyword)
     description_contains = allergen_correct_pizzas.filter(description__icontains=keyword)
@@ -142,6 +167,7 @@ def pizzasearch(request):
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)
 
+
 def pizzareset(request):
     keyword = request.POST.get("reset_keyword", None)
     pizzas = Pizza.objects.all().order_by('-name')
@@ -149,30 +175,32 @@ def pizzareset(request):
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
     return render(request, 'pizzalist.html', context)
 
+
 def myorders(request):
     myorders = []
 
-    for order in Order.objects.filter(O_T_M_User_Orders = request.user):
-      sum = 0
-      actorderitems = []
-      for orderitem in OrderItem.objects.filter(O_T_M_Order_OrderItems = order):
-        for food in FoodProduct.objects.filter(orderitems = orderitem):
-          actorderitems.append(food)
-          sum += food.price
-        for drink in DrinkProduct.objects.filter(orderitems = orderitem):
-          actorderitems.append(drink)
-          sum += drink.price
+    for order in Order.objects.filter(O_T_M_User_Orders=request.user):
+        sum = 0
+        actorderitems = []
+        for orderitem in OrderItem.objects.filter(O_T_M_Order_OrderItems=order):
+            for food in FoodProduct.objects.filter(orderitems=orderitem):
+                actorderitems.append(food)
+                sum += food.price
+            for drink in DrinkProduct.objects.filter(orderitems=orderitem):
+                actorderitems.append(drink)
+                sum += drink.price
 
-      try:
-        myorders.append((actorderitems, sum, order.transaction.currency, order))
-      except Exception:
-        myorders.append((actorderitems, sum, "HUF", order))
+        try:
+            myorders.append((actorderitems, sum, order.transaction.currency, order))
+        except Exception:
+            myorders.append((actorderitems, sum, "HUF", order))
 
-      myorders = myorders[-3:]
+        myorders = myorders[-3:]
 
     context = {"myorders_page": "active",
                "myorders": myorders}
     return render(request, 'myorders.html', context)
+
 
 @login_required
 @transaction.atomic

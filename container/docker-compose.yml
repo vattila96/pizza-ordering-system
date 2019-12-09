@@ -18,6 +18,15 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=postgres
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    ports:
+      - 9001:80
+    depends_on:
+      - postgres
   payment-server:
      build:
        context: ../payment-server

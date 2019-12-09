@@ -12,6 +12,9 @@
     <h1>Fizetés</h1>
     <div class="content">
         Milyen legyen a fizetés végleges státusza?
+        <% if (amount > 0) { %>
+            <h2>Összeg: <%= amount %> Huf</h2>
+        <% } %>
         <div class="statuses">
             <button class="status-button" id="success-button" data-redirect="<%= redirectUri %>">Sikeres</button>
             <button class="status-button" id="failure-button">Sikertelen</button>
