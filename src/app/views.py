@@ -54,7 +54,6 @@ def get_paid(request):
     print("-- items")
     for item in cart:
         print(item)
-        Order.O_T_M_User_Orders.
     return render(request, 'shoppingcart.html', {'cart': cart})
 
 
