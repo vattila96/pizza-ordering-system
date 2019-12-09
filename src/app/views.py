@@ -49,6 +49,15 @@ def cart_detail(request):
     return render(request, 'shoppingcart.html', {'cart': cart})
 
 
+def get_paid(request):
+    cart = Cart(request)
+    print("-- items")
+    for item in cart:
+        print(item)
+        Order.O_T_M_User_Orders.
+    return render(request, 'shoppingcart.html', {'cart': cart})
+
+
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')

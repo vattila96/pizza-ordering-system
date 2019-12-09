@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.base_user import AbstractBaseUser
 
+
 # Pay extra attention for using snake_case !! Things wont work otherwise. This is Python, not Java!
 
 class Product(models.Model):
@@ -204,7 +205,7 @@ class Order(models.Model):
     #  Relationships
     Courier_Orders = models.ForeignKey(Courier, on_delete=models.CASCADE)
     O_T_M_User_Orders = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    O_T_O_Address_Order = models.OneToOneField(Address, on_delete=models.CASCADE, null = True)
+    O_T_O_Address_Order = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
 
     #  Fields
     delivery_date = models.DateTimeField()
@@ -315,17 +316,16 @@ class User(AbstractBaseUser):
     def get_update_url(self):
         return reverse("PizzaDeliverySystem_User_update", args=(self.pk,))
 
-    
-class HomePageDetail(models.Model):
 
+class HomePageDetail(models.Model):
     main_image = models.ImageField(upload_to='index_images', default='main_pizza.jpg', blank=False)
     on_sale_pizza_1 = models.ImageField(upload_to='index_images', default='random-pizza.jpg', blank=False)
     on_sale_pizza_2 = models.ImageField(upload_to='index_images', default='random-pizza.jpg', blank=False)
     recommended_pizza_1 = models.ImageField(upload_to='index_images', default='random-pizza.jpg', blank=False)
     recommended_pizza_2 = models.ImageField(upload_to='index_images', default='random-pizza.jpg', blank=False)
     description_text = models.TextField(default="Add some description text...", blank=False)
-    latitude = models.FloatField(default=47.497913 , blank=False)
-    longitude = models.FloatField(default=19.040236 , blank=False)
+    latitude = models.FloatField(default=47.497913, blank=False)
+    longitude = models.FloatField(default=19.040236, blank=False)
 
     class Meta:
         pass
