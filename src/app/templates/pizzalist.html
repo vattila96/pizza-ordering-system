@@ -77,18 +77,9 @@
                     <div class="pizza-list">
                         <div class="mb-3 center">
                             <div class=" w-25">
-                                {% if user.is_authenticated %}
                                 <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
-                                        type="button" class="btn btn-secondary"
-                                        style="background-color: green">Create custom pizza
+                                    type="button" class="btn" id="create_custom">{% trans "Create custom pizza" %}
                                 </button>
-                                {% else %}
-                                <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
-                                        title="You need to be logged in to create custom pizza"
-                                        class="btn btn-secondary" style="background-color: gray"
-                                        disabled>{% trans "Create custom pizza" %}
-                                </button>
-                                {% endif %}
                             </div>
                             {% for pizza in pizzas %}
                                 {% if pizza.is_custom_pizza %}
@@ -261,30 +252,30 @@
                                                 <p class="label">{% trans "Size" %}</p>
                                                 <div class="form-group">
                                                     <select class="form-control" id="size">
-                                                        <option value="30">30 cm</option>
-                                                        <option value="45">45 cm</option>
-                                                        <option value="60">60 cm</option>
+                                                        <option value="30" onclick="GeneratePrice()">30 cm</option>
+                                                        <option value="45" onclick="GeneratePrice()">45 cm</option>
+                                                        <option value="60" onclick="GeneratePrice()">60 cm</option>
                                                     </select>
                                                 </div>
                                                 <p class="label">{% trans "Base" %}</p>
                                                 <div class="form-group">
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="pizza-base" type="radio"
-                                                            value="0" id="classic" checked>
+                                                            value="0" id="classic" onclick="GeneratePrice()" checked>
                                                         <label class="form-check-label" for="classic">
                                                                 {% trans "Classic" %}
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="pizza-base" type="radio"
-                                                            value="1" id="italian">
+                                                            value="1" id="italian" onclick="GeneratePrice()">
                                                         <label class="form-check-label" for="italian">
                                                                 {% trans "Italian" %}
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="pizza-base" type="radio"
-                                                            value="2" id="lactose-free">
+                                                            value="2" id="lactose-free" onclick="GeneratePrice()">
                                                         <label class="form-check-label" for="lactose-free">
                                                                 {% trans "Lactose free" %}
                                                         </label>
@@ -295,49 +286,49 @@
                                                 <p class="label">{% trans "Sauce" %}</p>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
-                                                        value="0" id="sauce-0" checked>
+                                                        value="0" id="sauce-0" onclick="GeneratePrice()" checked>
                                                     <label class="form-check-label" for="sauce-0">
                                                         {% trans "Sauce" %} 1
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
-                                                        value="1" id="sauce-1">
+                                                        value="1" id="sauce-1" onclick="GeneratePrice()">
                                                     <label class="form-check-label" for="sauce-1">
                                                         {% trans "Sauce" %} 2
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
-                                                        value="2" id="sauce-2">
+                                                        value="2" id="sauce-2" onclick="GeneratePrice()">
                                                     <label class="form-check-label" for="sauce-2">
                                                         {% trans "Sauce" %} 3
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
-                                                        value="3" id="sauce-3" checked>
+                                                        value="3" id="sauce-3" onclick="GeneratePrice()" checked>
                                                     <label class="form-check-label" for="sauce-3">
                                                         {% trans "Sauce" %} 4
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
-                                                        value="4" id="sauce-4">
+                                                        value="4" id="sauce-4" onclick="GeneratePrice()">
                                                     <label class="form-check-label" for="sauce-4">
                                                         {% trans "Sauce" %} 5
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
-                                                        value="5" id="sauce-5">
+                                                        value="5" id="sauce-5" onclick="GeneratePrice()">
                                                     <label class="form-check-label" for="sauce-5">
                                                         {% trans "Sauce" %} 6
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="pizza-sauce" type="radio"
-                                                        value="6" id="sauce-6">
+                                                        value="6" id="sauce-6" onclick="GeneratePrice()">
                                                     <label class="form-check-label" for="sauce-6">
                                                         {% trans "Sauce" %} 7
                                                     </label>
@@ -357,9 +348,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -369,9 +360,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -381,9 +372,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -393,9 +384,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -405,9 +396,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -417,9 +408,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -431,9 +422,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -443,9 +434,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -455,9 +446,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -467,9 +458,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -479,9 +470,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -491,9 +482,9 @@
                                                     </div>
                                                     <div class="col-auto my-1">
                                                         <select class="custom-select mr-sm-2" id="topping-label">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
+                                                            <option value="0" onclick="GeneratePrice()">0</option>
+                                                            <option value="1" onclick="GeneratePrice()">1</option>
+                                                            <option value="2" onclick="GeneratePrice()">2</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -510,16 +501,10 @@
                                 <img class="img-fluid" src="../../static/images/random-pizza.jpg" alt="Pizza" />
                             </div>
                             <div class="col-7">
-                                <p><b>{% trans "Price:" %}</b> $8</p>
+                                <p><b>{% trans "Price:" %}</b> <p id="pizza_pr">$3</p> </p>
                                 <p>
                                     {% trans "Toppings:" %}
                                 </p>
-                                <ul>
-                                    <li>{% trans "mushroom:" %} x2 - 0.8$</li>
-                                    <li>{% trans "mushroom:" %} x2 - 0.8$</li>
-                                    <li>{% trans "mushroom:" %} x2 - 0.8$</li>
-                                    <li>...</li>
-                                </ul>
                             </div>
                         </div>
                         <!--div class="row">
@@ -583,12 +568,6 @@
                                     <p>
                                         {% trans "Toppings" %}:
                                     </p>
-                                    <ul>
-                                        <li>{% trans "mushroom" %} x2 - 0.8$</li>
-                                        <li>{% trans "mushroom" %}  x2 - 0.8$</li>
-                                        <li>{% trans "mushroom" %}  x2 - 0.8$</li>
-                                        <li>...</li>
-                                    </ul>
                                 </div>
                             </div>
                             <!--div class="row">
@@ -614,6 +593,14 @@
                                                     id="name" aria-describedby="namehelp" placeholder="Name">
                                                 <small id="namehelp" class="form-text text-muted">{% trans "The name of your custom pizza." %}</small>
 
+												<p>Category</p>
+												<select id ="select_category">
+													{% for cat in categories %}
+														<option value="{{ cat.name }}">{{ cat.name }}</option>					
+													{% endfor %}							
+												</select> 
+												<br>
+												<br>
                                                 <label for="price">{% trans "Price" %}:</label>
                                                 $<span class="pizza_price"></span>
                                                 <input name="custompizza_price" type="hidden"
@@ -656,5 +643,8 @@
             $(".pizza_price_form").val(rand);
         });
     });
-
+	
+	function GeneratePrice() {
+		document.getElementById("pizza_pr").innerHTML = "$" + (Math.floor(Math.random() * 10) + 5); 
+	}
 </script>
