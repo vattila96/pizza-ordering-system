@@ -77,9 +77,18 @@
                     <div class="pizza-list">
                         <div class="mb-3 center">
                             <div class=" w-25">
+                                {% if user.is_authenticated %}
                                 <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
-                                    type="button" class="btn" id="create_custom">{% trans "Create custom pizza" %}
+                                        type="button" class="btn btn-secondary"
+                                        style="background-color: green">Create custom pizza
                                 </button>
+                                {% else %}
+                                <button data-toggle="modal" data-target="#customize-pizza-modal-for-custompizza"
+                                        title="You need to be logged in to create custom pizza"
+                                        class="btn btn-secondary" style="background-color: gray"
+                                        disabled>{% trans "Create custom pizza" %}
+                                </button>
+                                {% endif %}
                             </div>
                             {% for pizza in pizzas %}
                                 {% if pizza.is_custom_pizza %}

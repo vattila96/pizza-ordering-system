@@ -28,29 +28,20 @@
                 <a class="nav-link {{ pizzalist_page }}" href="{% url 'pizzalist' %}">{% trans "Pizzas" %} </a>
             </li>
             {% if user.is_authenticated %}
+                <li class="navbar-brand">
+                    <a class="nav-link {{ myorders_page }}" href="{% url 'myorders' %}">{% trans "My orders" %} </a>
+                </li>
                 <li class=navbar-brand>
                     <a class="nav-link {{ profile_page }}" href="{% url 'profile' %}">{% trans "Profile" %} </a>
                 </li>
                 <li class="navbar-brand">
-                    <a class="nav-link {{ myorders_page }}" href="{% url 'myorders' %}">{% trans "My orders" %} </a>
-                </li>
-                <li class="navbar-brand"> 
-                    <a class="nav-link {{ resetpw_page }}" href="{% url 'password_reset' %}" >{% trans "Reset password" %}</a>
-                </li>   
-                <li class="navbar-brand">   
                     <a class="nav-link" href="{% url 'logout' %}" >{% trans "Log out" %}</a>
                 </li>
             {% else %}
                 <li class="navbar-brand">
-                    <a class="nav-link {{ signup_page }}" href="{% url 'signup' %}">{% trans "Sign up" %}</a>
-                </li>  
-                <li class="navbar-brand">
                     <a class="nav-link {{ login_page }}" href="{% url 'login' %}">{% trans "Log in" %}</a>
                 </li>
             {% endif %}
-            <li class="navbar-brand">
-                <a class="nav-link" href="/admin">{% trans "Go to Admin" %}</a>
-            </li>
             <li class="navbar-brand dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {% trans "Contact" %}
