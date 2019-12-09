@@ -21,6 +21,12 @@ class PizzaCategory(models.Model):
 
 class Pizza(models.Model):
     category = models.ForeignKey(PizzaCategory, on_delete=models.CASCADE)
+# Todo change hard-coded allergens to a new Class in the DB
+    contains_milk = models.BooleanField(default=False)
+    contains_peanuts = models.BooleanField(default=False)
+    contains_gluten = models.BooleanField(default=False)
+    contains_fish = models.BooleanField(default=False)
+    contains_wheat = models.BooleanField(default=False)
 
     name = models.CharField(max_length=100)
     description = models.TextField()

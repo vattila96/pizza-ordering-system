@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.translation import gettext as _
 from django.views import generic
 from django.views.decorators.http import require_POST
@@ -15,16 +16,21 @@ from .cart import Cart
 from .domain.models import *
 from .forms import *
 
-PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 30)]
+PRODUCT_QUANTITY_CHOICES = [(i / 2, str(i / 2)) for i in range(1, 40)]
 
 
 class CartAddProductForm(forms.Form):
-    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
+    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=float)
     update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
 
 @require_POST
 def cart_add(request, product_id):
+    try:
+        quan = 0.5
+    except MultiValueDictKeyError as er:
+        quan = 1.0
+
     cart = Cart(request)
     product = get_object_or_404(Pizza, id=product_id)
     form = CartAddProductForm(request.POST)
@@ -32,7 +38,7 @@ def cart_add(request, product_id):
         cd = form.cleaned_data
         cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
     else:
-        cart.add(product=product, quantity=1)
+        cart.add(product=product, quantity=quan)
     return redirect('shoppingcart')
 
 
@@ -47,6 +53,7 @@ def cart_detail(request):
     cart = Cart(request)
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+        # item['quantity'] = int(item['quantity'])
     return render(request, 'shoppingcart.html', {'cart': cart})
 
 
@@ -132,8 +139,29 @@ def categoryfilter(request):
 
 def pizzasearch(request):
     keyword = request.POST.get("search_keyword", None)
-    name_contains = Pizza.objects.filter(name__icontains=keyword)
-    description_contains = Pizza.objects.filter(description__icontains=keyword)
+
+    allergen_list = request.POST.getlist("allergens")
+
+    allergen_correct_pizzas = Pizza.objects.all().order_by('-name')
+
+    # Todo change hard-coded allergens to a new Class in the DB
+    if "milk" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_milk=False)
+
+    if "peanuts" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_peanuts=False)
+
+    if "gluten" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_gluten=False)
+
+    if "fish" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_fish=False)
+
+    if "wheat" in allergen_list:
+        allergen_correct_pizzas = allergen_correct_pizzas.filter(contains_wheat=False)
+
+    name_contains = allergen_correct_pizzas.filter(name__icontains=keyword)
+    description_contains = allergen_correct_pizzas.filter(description__icontains=keyword)
     pizzas = (name_contains | description_contains).order_by('-name')
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}

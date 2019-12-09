@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -12,7 +13,7 @@
 
     <link rel="stylesheet" href="{% static 'css/album.css' %}" >
     <link rel="stylesheet" href="{% static 'css/general-design.css' %}" >
-	<title>Pizza - My orders</title>
+	<title>%trans "Pizza - My orders:" %}</title>
 	
   </head>
   <body>
@@ -21,10 +22,10 @@
 
     <main role="main">
       <div class="container bg-blue text-light">
-        <h1 class="text-center">My previous orders</h1>
+        <h1 class="text-center">{%trans "My previous orders" %}</h1>
         <section class="jumbotron text-center">
           <div class="container text-light border rounded mb-5">
-              Futár:
+            {%trans "Food delivery:" %}
               <div class="row center-map">
                   <!--                    src="https://maps.google.com/maps?q=<LONGITUDE>%2C+<LATITUDE>&t=&z=15&ie=UTF8&iwloc=&output=embed"-->
                   <iframe width="500" height="260" id="gmap_canvas" src="https://maps.google.com/maps?q=47.473956%2C+19.061503&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
@@ -38,7 +39,7 @@
                 </div>
                 <div class="col-9">
                   <div class="row"><h3>Pizza</h3></div>
-                  <div class="row">{{ order.3.delivery_date }} -> Shipping here: {{ order.3.O_T_O_Address_Order.city }}, {{ order.3.O_T_O_Address_Order.street_and_street_number }} {{ order.3.O_T_O_Address_Order.door_number_and_others }}, {{ order.3.O_T_O_Address_Order.zip_code }}</div>
+                  <div class="row">{{ order.3.delivery_date }} -> {%trans "Shipping here:" %} {{ order.3.O_T_O_Address_Order.city }}, {{ order.3.O_T_O_Address_Order.street_and_street_number }} {{ order.3.O_T_O_Address_Order.door_number_and_others }}, {{ order.3.O_T_O_Address_Order.zip_code }}</div>
                 </div>
               </div>
               <div class="row mb-3 mt-3 ml-1">
@@ -50,12 +51,12 @@
                     </div>
                   {% endfor %}
                   <div class="row border-top">
-                    <div class="col-6 text-left">Total</div>
+                    <div class="col-6 text-left">{%trans "Total:" %}</div>
                     <div class="col text-right">{{ order.1 }} {{ order.2 }}</div>
                   </div>
                 </div>
                 <div class="col-4">
-                  <a href="{% url 'pizzalist' %}" class="btn btn-secondary my-2">Reorder</a>
+                  <a href="{% url 'pizzalist' %}" class="btn btn-secondary my-2">{%trans "Reorder:" %}</a>
                 </div>
               </div>
             </div>
