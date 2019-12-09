@@ -21,19 +21,22 @@ class PizzaCategory(models.Model):
 
 class Pizza(models.Model):
     category = models.ForeignKey(PizzaCategory, on_delete=models.CASCADE)
-    
+
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.PositiveIntegerField(default=0)
     image = models.ImageField(upload_to="gallery", blank=True)
     is_custom_pizza = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
 
+
 GENDER_CHOICES = (
-   ('M', 'Male'),
-   ('F', 'Female')
+    ('M', 'Male'),
+    ('F', 'Female')
 )
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -44,9 +47,11 @@ class Profile(models.Model):
     address_main = models.CharField(max_length=256, null=True, blank=True)
     address_secondary = models.CharField(max_length=256, null=True, blank=True)
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     Profile.objects.get_or_create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):

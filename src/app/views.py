@@ -1,4 +1,5 @@
 import base64
+from datetime import datetime
 
 import requests
 from django.contrib.auth.decorators import login_required
@@ -50,11 +51,24 @@ def cart_detail(request):
 
 
 def get_paid(request):
-    cart = Cart(request)
-    print("-- items")
-    for item in cart:
-        print(item)
-    return render(request, 'shoppingcart.html', {'cart': cart})
+    status = request.GET.get('status')
+    if status == "success":
+        cart = Cart(request)
+        courier = Courier.objects.all().order_by('id').first()
+        address = Address.objects.get(O_T_M_User_Adresses=request.user)
+        order = Order(
+            O_T_M_User_Orders=request.user, status="Fizetve!", discount=10,
+            delivery_date=datetime.now(), expected_giving_to_courier_date=datetime.now(),
+            given_to_courier_date=datetime.now(), expected_delivery_date=datetime.now(),
+            Courier_Orders_id=courier.id, comment="Best order ever!", O_T_O_Address_Order_id=address.id
+        )
+        # todo: add order items in another issue when pizzas are fixed!
+        order.save()
+        cart.clear()
+
+        return render(request, 'successful-payment.html')
+
+    return render(request, 'unsuccessful-payment.html')
 
 
 class SignUp(generic.CreateView):

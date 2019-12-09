@@ -205,7 +205,7 @@ class Order(models.Model):
     #  Relationships
     Courier_Orders = models.ForeignKey(Courier, on_delete=models.CASCADE)
     O_T_M_User_Orders = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    O_T_O_Address_Order = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
+    O_T_O_Address_Order = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
 
     #  Fields
     delivery_date = models.DateTimeField()
