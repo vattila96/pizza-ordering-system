@@ -118,7 +118,7 @@ def pizzalist(request):
         keyword = request.POST.get("custompizza_name", None)
         if keyword != "" and PizzaCategory.objects.count() > 0:
           pizza_price = request.POST.get("custompizza_price", None)
-          Pizza(name=keyword, description="Custom pizza", category = PizzaCategory.objects.last(), is_custom_pizza=True, price=pizza_price).save()	
+          Pizza(name=keyword, description="Custom pizza", category = PizzaCategory.objects.last(), is_custom_pizza=True).save()	
 		  
     pizzas = Pizza.objects.all().order_by('-name')
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
