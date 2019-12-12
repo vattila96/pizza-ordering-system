@@ -116,10 +116,10 @@ def profile(request):
 def pizzalist(request):
     if request.method == 'POST':
         keyword = request.POST.get("custompizza_name", None)
-        if keyword != "":
-            pizza_price = request.POST.get("custompizza_price", None)
-            Pizza(name=keyword, description="Custom pizza", is_custom_pizza=True, price=pizza_price).save()
-
+        if keyword != "" and PizzaCategory.objects.count() > 0:
+          pizza_price = request.POST.get("custompizza_price", None)
+          Pizza(name=keyword, description="Custom pizza", category = PizzaCategory.objects.last(), is_custom_pizza=True).save()	
+		  
     pizzas = Pizza.objects.all().order_by('-name')
     pizza_categories = PizzaCategory.objects.all().order_by('-name')
     context = {'pizzalist_page': 'active', 'pizzas': pizzas, 'categories': pizza_categories}
