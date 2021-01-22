@@ -1,4 +1,4 @@
-# Pizza ordering system.
+# Pizza ordering system
 Forked from: https://github.com/thejungwon/docker-webapp-django
 
 ## Migration errors
